@@ -32,7 +32,40 @@ const api = {
       .then((response) => {
         return response.text()
       })
+  },
+
+  /**
+   * Gets the OSM data for a given rectangle.
+   *
+   * @param {float} south
+   * @param {float} west
+   * @param {float} north
+   * @param {float} east
+   * @return {Promise}
+   */
+  getNodesForMap: ({south, west, north, east}) => {
+    const query = `[out:json]
+[timeout:25]
+;
+(
+  node
+    ["diet:gluten_free"="yes"]
+    (${south},${west},${north},${east});
+);
+out;
+>;
+out skel qt;`
+    console.log(query)
+
+    const queryRequest = new Request(`http://overpass-api.de/api/interpreter`, {
+        method: 'POST',
+        body: query
+      }
+    )
+    return fetch(queryRequest)
+
   }
+
 }
 
 export default api
