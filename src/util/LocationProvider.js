@@ -1,6 +1,6 @@
 const LOCATION = {
-  latitude: '52.5145',
-  longitude: '13.3907'
+  latitude: 52.5145,
+  longitude: 13.3907
 };
 
 let UPDATE_CALLBACK;
