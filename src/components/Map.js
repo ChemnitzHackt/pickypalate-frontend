@@ -2,7 +2,16 @@ import React from 'react';
 import { compose, withProps } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
+import Styles from './MapStyles';
+
+console.log(Styles)
+
 const GOOGLE_MAPS_API_KEY = 'AIzaSyDlahMtbvEn2WGTdbBZ0mp7Kew5Q8m4AEU';
+
+const isDay = () => {
+  const hours = new Date().getHours()
+  return hours > 6 && hours < 20
+};
 
 const Map = compose(
   withProps({
@@ -19,7 +28,12 @@ const Map = compose(
   const lng = props.longitude;
 
   return (
-    <GoogleMap onClick={props.onClick} defaultZoom={10} center={{ lat, lng }}>
+    <GoogleMap
+      onClick={props.onClick}
+      defaultZoom={13}
+      center={{ lat, lng }}
+      defaultOptions={{ styles: Styles[ isDay() ? 'Day' : 'Night' ] }}
+    >
       {props.children}
     </GoogleMap>
   )
