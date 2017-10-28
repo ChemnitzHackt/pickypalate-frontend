@@ -30,6 +30,9 @@ class App extends Component {
     Locator.onChange(location => this.setState({ location }));
 
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleMapClick = this.handleMapClick.bind(this);
+    Locator.onChange(this.updateLocation.bind(this));
+    this.updatePlaces();
   }
 
   handleAddClick() {
@@ -60,7 +63,7 @@ class App extends Component {
   renderMarkers (place) {
     console.log('rendering place:', place)
     return (
-      <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} onClick={() => this.setState({showDetailOverlay:true, details:place.tags.name})}/>
+      <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} onClick={() => this.setState({showDetailOverlay:true, details:place.tags})}/>
     )
   }
 
@@ -74,8 +77,11 @@ class App extends Component {
         </Map>
         {this.state.showDetailOverlay == true && <div>{this.state.details}</div> }
         <FilterButton />
-        {this.state.showAddOverlay == true && <AddView /> }
-        {this.state.showDetailOverlay == true && <Overlay> <DetailView/> </Overlay> }
+        {this.state.showAddOverlay === true && <AddView /> }
+        {this.state.showDetailOverlay === true &&
+          <Overlay> 
+            <DetailView data={this.state.details}/>
+          </Overlay> }
         <AddButton onClick= {this.handleAddClick} />
       </AppContainer>
     );

@@ -4,30 +4,34 @@ const DetailView = function(props) {
     return (
         <div className="detail-view-container">
             <header>
-                <h1>Marshalls Mum</h1>
-                <div class="icons">
-                    <div class="glutenfree-icon">
+                <h1>{props.data.name || ""}</h1>
+                <div className="icons">
+                    <div className="glutenfree-icon">
 
                     </div>
-                    <div class="vegan-icon">
+                    <div className="vegan-icon">
                         
                     </div>
-                    <div class="vegetarian-icon">
+                    <div className="vegetarian-icon">
                         
                     </div>
                 </div>
             </header>
             <main>
                 <address>
-                    <strong>Address:</strong>&nbsp;August-Bebel-Straße 1, 04275 Leipzig
+                    <dl>
+                        <dt><strong>Address:</strong></dt>
+                        <dd>{props.data["addr:street"]+" " +props.data["addr:housenumber"] || ""}</dd>
+                        <dd>{props.data["addr:postcode"]+" "+props.data["addr:city"] || ""}</dd>
+                    </dl>
                 </address>
-                <time class="opening-times">
+                <time className="opening-times">
                     <strong>Opening Hours:</strong>&nbsp;Samstag:&nbsp;12:00–19:00
                 </time>
-                <p class="telephone-number">
+                <p className="telephone-number">
                     <strong>Telephone Number:</strong>&nbsp;0341 30698857
                 </p>
-                <p class="description">
+                <p className="description">
                     Das im Shabby Chic gestaltete Café bietet zu Kaffee und Frappés feine amerikanische Süßwaren und Eis am Stil.
                 </p>
             </main>
