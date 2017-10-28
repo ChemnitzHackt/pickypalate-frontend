@@ -26,7 +26,7 @@ class App extends Component {
       showAddOverlay: false,
       showDetailOverlay: false,
       places: [],
-      filters: ['["diet:gluten_free"="yes"]', '["diet:vegan"="yes"]']
+      filters: ['diet:gluten_free', 'diet:vegan']
     };
 
     this.handleAddClick = this.handleAddClick.bind(this);

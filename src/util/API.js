@@ -45,7 +45,7 @@ const api = {
    */
   getNodesForMap: ({filters, south, west, north, east}) => {
     const nodes = filters.map(filter => {
-      return `node ${filter} (${south},${west},${north},${east});`;
+      return `node ["${filter}"="yes"] (${south},${west},${north},${east});`;
     });
 
     const query = `[out:json]
@@ -62,7 +62,7 @@ const api = {
       method: 'POST',
       body: query
     });
-    
+
     return fetch(queryRequest)
       .then((result) => {
         return result.json()
