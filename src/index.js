@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import 'babel-polyfill';
 import 'normalize.css';
 import './style/index.scss';
