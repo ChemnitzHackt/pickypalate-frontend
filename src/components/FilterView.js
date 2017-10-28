@@ -67,6 +67,10 @@ class FilterView extends Component {
   }
 
   onClickItem ({target}) {
+    if (!target.classList.contains('filter-item')) {
+      target = target.parentNode;
+    }
+
     const filter = target.getAttribute('filter');
     const filters = JSON.parse(JSON.stringify(this.state.filters));
     const idx = filters.indexOf(filter);
