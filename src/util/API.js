@@ -55,7 +55,6 @@ const api = {
 out;
 >;
 out skel qt;`
-    console.log(query)
 
     const queryRequest = new Request(`http://overpass-api.de/api/interpreter`, {
         method: 'POST',

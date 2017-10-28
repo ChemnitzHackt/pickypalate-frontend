@@ -19,7 +19,7 @@ const Map = compose(
 
   return (
     <GoogleMap defaultZoom={8} defaultCenter={{ lat, lng }}>
-      <Marker position={{ lat, lng }} />
+      {props.children}
     </GoogleMap>
   )
 });
