@@ -1,3 +1,6 @@
+@import 'icons/material-icons.css';
+@import 'button';
+
 * {
   box-sizing: border-box;
 }
@@ -6,20 +9,15 @@ html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-html, body {
+body {
+  background-color: #999;
+}
+
+.overlay-container {
   width: 100%;
   height: 100%;
-  position: relative;
-}
-
-body {
-  background-color: #eaeaea;
-}
-
-.app {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin: auto;
+  max-width: 400px;
+  border-radius: 10px;
+  background-color: #fff;
 }

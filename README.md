@@ -1,4 +1,4 @@
-# Picky Palate
+# UberFood
 
 [![license](https://img.shields.io/github/license/Drako/whicher.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
