@@ -21,12 +21,15 @@ class App extends Component {
   constructor (props) {
     super(props);
 
+    let filters = localStorage.getItem('filters');
+    filters = filters && JSON.parse(filters) || ['diet:gluten_free', 'diet:vegan'];
+
     this.state = {
       location: Locator.get(),
       showAddOverlay: false,
       showDetailOverlay: false,
       places: [],
-      filters: ['diet:gluten_free', 'diet:vegan'],
+      filters: filters,
       details: {}
     };
 
@@ -81,6 +84,7 @@ class App extends Component {
 
   updateFilters (filters) {
     this.setState({ filters });
+    localStorage.setItem('filters', JSON.stringify(filters))
     this.updatePlaces();
   }
 
