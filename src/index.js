@@ -69,8 +69,8 @@ class App extends Component {
           }
         </Map>
         <FilterButton />
-        {this.state.showAddOverlay == true && <AddView /> }
-        {this.state.showDetailOverlay == true && 
+        {this.state.showAddOverlay === true && <AddView /> }
+        {this.state.showDetailOverlay === true &&
           <Overlay> 
             <DetailView /> 
           </Overlay> }
