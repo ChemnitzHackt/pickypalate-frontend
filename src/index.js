@@ -80,7 +80,7 @@ class App extends Component {
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showDetailOverlay === true &&
           <Overlay> 
-            <DetailView data={this.state.details}/>
+            <DetailView data={this.state.details} onClose={this.handleMapClick}/> 
           </Overlay> }
         <AddButton onClick= {this.handleAddClick} />
       </AppContainer>

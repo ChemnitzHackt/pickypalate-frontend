@@ -15,6 +15,7 @@ const DetailView = function(props) {
                     <div className="vegetarian-icon">
                         
                     </div>
+                    <div className="close-button" onClick={props.onClose}>X</div>
                 </div>
             </header>
             <main>
