@@ -22,15 +22,19 @@ class App extends Component {
       location: Locator.get()
     };
 
-    Locator.onChange(location => this.setState({ location }));
+    Locator.onChange(this.updateLocation.bind(this));
+  }
+
+  updateLocation (location) {
+    this.setState({ location });
   }
 
   render () {
     return (
       <AppContainer>
-        <Map location={ this.state.location } />
+        <Map longitude={ this.state.location.longitude } latitude={ this.state.location.latitude } />
         <FilterButton />
-        <AddButton />
+        <AddButton />  
       </AppContainer>
     );
   }
