@@ -11,9 +11,9 @@ import AddButton from './components/AddButton';
 import FilterButton from './components/FilterButton';
 import Overlay from './components/Overlay';
 import DetailView from './components/DetailView';
+import FilterView from './components/FilterView';
 import Map from './components/Map';
 import { Marker } from 'react-google-maps';
-
 
 const Locator = new LocationProvider();
 
@@ -25,10 +25,12 @@ class App extends Component {
       location: Locator.get(),
       showAddOverlay: false,
       showDetailOverlay: false,
-      places: []
+      places: [],
+      filters: ['diet:gluten_free', 'diet:vegan'],
+      details: {}
     };
 
-    this.handleAddClick = this.handleAddClick.bind(this);
+    this.updateFilters = this.updateFilters.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
     this.updatePlaces();
@@ -39,15 +41,24 @@ class App extends Component {
   }
 
   handleMapClick () {
-    // hide details
-    if(this.state.showDetailOverlay)
-      this.setState({showDetailOverlay:false});
+    this.setState({
+      showDetailOverlay: false,
+      showFilterOverlay: false
+    });
   }
 
   renderMarkers (place) {
     console.log('rendering place:', place)
     return (
-      <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} onClick={() => this.setState({showDetailOverlay:true, details:place.tags})}/>
+      <Marker
+        key={place.id}
+        position={{lat: place.lat, lng: place.lon}} 
+        tags={place.tags}
+        onClick={() => this.setState({
+          showDetailOverlay: true,
+          details: place.tags.name
+        })}
+      />
     )
   }
 
@@ -58,6 +69,7 @@ class App extends Component {
 
   updatePlaces () {
     api.getNodesForMap({
+      filters: this.state.filters,
       south: this.state.location.latitude - 0.5,
       west: this.state.location.longitude - 0.5,
       north: this.state.location.latitude + 0.5,
@@ -65,6 +77,11 @@ class App extends Component {
     }).then((data) => {
       this.setState({places: data.elements})
     });
+  }
+
+  updateFilters (filters) {
+    this.setState({ filters });
+    this.updatePlaces();
   }
 
   render () {
@@ -76,8 +93,9 @@ class App extends Component {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
-        <FilterButton />
+        <FilterButton onClick={() => this.setState({ showFilterOverlay: !this.state.showFilterOverlay })} />
         {this.state.showAddOverlay === true && <AddView /> }
+        {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
         {this.state.showDetailOverlay === true &&
           <Overlay> 
             <DetailView data={this.state.details} onClose={this.handleMapClick}/> 
