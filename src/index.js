@@ -10,6 +10,7 @@ import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
 import FilterButton from './components/FilterButton';
 import Overlay from './components/Overlay';
+import Map from './components/Map';
 
 const Locator = new LocationProvider();
 
@@ -18,7 +19,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      loading: true,
       location: Locator.get()
     };
 
@@ -28,6 +28,7 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
+        <Map location={ this.state.location } />
         <FilterButton />
         <AddButton />
       </AppContainer>

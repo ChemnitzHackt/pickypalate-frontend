@@ -1,6 +1,6 @@
 const LOCATION = {
-  longitude: '52.5145',
-  latitude: '13.3907'
+  latitude: 52.5145,
+  longitude: 13.3907
 };
 
 let UPDATE_CALLBACK;
@@ -65,7 +65,7 @@ class LocationProvider {
    * @memberof LocationProvider
    */
   _listen () {
-    setInterval(this._update, 15000);
+    setInterval(this._update, 5000);
   }
 }
 
