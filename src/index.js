@@ -25,7 +25,8 @@ class App extends Component {
       location: Locator.get(),
       showAddOverlay: false,
       showDetailOverlay: false,
-      places: []
+      places: [],
+      filters: ['["diet:gluten_free"="yes"]', '["diet:vegan"="yes"]']
     };
 
     this.handleAddClick = this.handleAddClick.bind(this);
@@ -39,7 +40,15 @@ class App extends Component {
   renderMarkers (place) {
     console.log('rendering place:', place)
     return (
-      <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} onClick={() => this.setState({showDetailOverlay:true, details:place.tags.name})}/>
+      <Marker
+        key={place.id}
+        position={{lat: place.lat, lng: place.lon}} 
+        tags={place.tags}
+        onClick={() => this.setState({
+          showDetailOverlay: true,
+          details: place.tags.name
+        })}
+      />
     )
   }
 
@@ -50,6 +59,7 @@ class App extends Component {
 
   updatePlaces () {
     api.getNodesForMap({
+      filters: this.state.filters,
       south: this.state.location.latitude - 0.5,
       west: this.state.location.longitude - 0.5,
       north: this.state.location.latitude + 0.5,
@@ -63,7 +73,7 @@ class App extends Component {
     return (
       <AppContainer>
         <Map longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
-          <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
+          <Marker position={{lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           {
             this.state.places.map((place) => this.renderMarkers(place))
           }
