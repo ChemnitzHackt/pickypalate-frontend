@@ -6,20 +6,22 @@ button {
 }
 
 button.icon-only {
-  width: 80px;
-  height: 80px;
-  line-height: 6em;
+  width: 50px;
+  height: 50px;
+  line-height: 4em;
   text-align: center;
   border-radius: 50%;
   box-shadow: 0 1px 10px 0 rgba(0,0,0,.3);
 }
 
 button.icon-only > i {
-  font-size: 2em !important;
   text-shadow: 0 1px 10px rgba(0,0,0,.15);
 }
 
 button.icon-only.primary {
+  width: 80px;
+  height: 80px;
+  line-height: 6em;
   background-color: #673ab7;
 }
 
@@ -29,6 +31,20 @@ button.icon-only.primary:active {
 } 
 
 button.icon-only.primary > i {
+  color: #fff;
+  font-size: 2em;
+}
+
+button.icon-only.secondary {
+  background-color: #03A9F4;
+}
+
+button.icon-only.secondary:hover,
+button.icon-only.secondary:active {
+  background-color: #40b6f3;
+} 
+
+button.icon-only.secondary > i {
   color: #fff;
 }
 
@@ -46,4 +62,11 @@ button.add-marker {
     bottom: -0.75em;
     margin: 0 auto;
   }
+}
+
+button.filters {
+  position: absolute;
+  right: 2em;
+  top: 2em;
+  z-index: 100;
 }

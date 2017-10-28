@@ -8,6 +8,7 @@ import LocationProvider from './util/LocationProvider';
 
 import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
+import FilterButton from './components/FilterButton';
 import Overlay from './components/Overlay';
 
 const Locator = new LocationProvider();
@@ -27,8 +28,8 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
+        <FilterButton />
         <AddButton />
-        <Overlay />
       </AppContainer>
     );
   }
