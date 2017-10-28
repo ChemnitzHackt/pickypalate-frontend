@@ -1,8 +1,15 @@
 import React from "react";
 
+import Overlay from './Overlay';
+import Button from './Button';
+
 const DetailView = function(props) {
     return (
-        <div className="detail-view-container">
+        <Overlay className="detail-view">
+            <Button onClick={props.onClose} className="close icon-only secondary">
+                <i className="material-icons">clear</i>
+            </Button>
+            
             <header>
                 <h1>{props.data.name || ""}</h1>
                 <div className="icons">
@@ -15,7 +22,6 @@ const DetailView = function(props) {
                     <div className="vegetarian-icon">
                         
                     </div>
-                    <div className="close-button" onClick={props.onClose}>X</div>
                 </div>
             </header>
             <main>
@@ -50,7 +56,7 @@ const DetailView = function(props) {
 
             </footer>
             {props.children}
-        </div>
+        </Overlay>
     ); 
 };
 

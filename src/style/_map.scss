@@ -10,4 +10,11 @@
 .map--view {
   width: 100%;
   height: 100%;
+
+  .gmnoscreen, 
+  .gmnoprint, 
+  .gm-style-cc,
+  button {
+    display: none;
+  }
 }
