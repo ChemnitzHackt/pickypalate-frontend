@@ -29,11 +29,18 @@ class App extends Component {
     };
 
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleMapClick = this.handleMapClick.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
   }
 
   handleAddClick () {
     alert('show details');
+  }
+
+  handleMapClick () {
+    // hide details
+    if(this.state.showDetailOverlay)
+      this.setState({showDetailOverlay:false});
   }
 
   renderMarkers (place) {
@@ -62,7 +69,7 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        <Map longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
+        <Map  onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
           <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           {
             this.state.places.map((place) => this.renderMarkers(place))
