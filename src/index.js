@@ -12,7 +12,7 @@ import FilterButton from './components/FilterButton';
 import Overlay from './components/Overlay';
 import DetailView from './components/DetailView';
 import Map from './components/Map';
-import {Marker} from "react-google-maps";
+import { Marker } from 'react-google-maps';
 
 
 const Locator = new LocationProvider();
@@ -25,9 +25,8 @@ class App extends Component {
       location: Locator.get(),
       showAddOverlay: false,
       showDetailOverlay: false,
+      places: []
     };
-
-    Locator.onChange(location => this.setState({ location }));
 
     this.handleAddClick = this.handleAddClick.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
@@ -35,29 +34,14 @@ class App extends Component {
     this.updatePlaces();
   }
 
-  handleAddClick() {
-    this.setState({showAddOverlay:true}); 
-      loading: true,
-      location: Locator.get(),
-      places: [],
-      showDetailOverlay: false,
-      details: null,
-    }
+  handleAddClick () {
+    alert('show details');
+  }
 
-    Locator.onChange((location) => {
-      console.log('get new loc', location);
-      this.setState({ location })
-    });
-
-    // load the gluten_free locations
-    api.getNodesForMap({
-      south: 52.310997483367,
-      west: 13.047637939453,
-      north: 52.851717861804,
-      east: 14.013061523438
-    }).then((data) => {
-      this.setState({places: data.elements})
-    })
+  handleMapClick () {
+    // hide details
+    if(this.state.showDetailOverlay)
+      this.setState({showDetailOverlay:false});
   }
 
   renderMarkers (place) {
@@ -67,15 +51,31 @@ class App extends Component {
     )
   }
 
+  updateLocation (location) {
+    this.setState({ location });
+    this.updatePlaces();
+  }
+
+  updatePlaces () {
+    api.getNodesForMap({
+      south: this.state.location.latitude - 0.5,
+      west: this.state.location.longitude - 0.5,
+      north: this.state.location.latitude + 0.5,
+      east: this.state.location.longitude + 0.5
+    }).then((data) => {
+      this.setState({places: data.elements})
+    });
+  }
+
   render () {
     return (
       <AppContainer>
-        <Map location={ this.state.location } >
+        <Map  onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
+          <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
-        {this.state.showDetailOverlay == true && <div>{this.state.details}</div> }
         <FilterButton />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showDetailOverlay === true &&

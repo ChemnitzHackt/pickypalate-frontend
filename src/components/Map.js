@@ -15,11 +15,11 @@ const Map = compose(
   withScriptjs,
   withGoogleMap
 )(props => {
-  const lat = props.location && props.location.latitude;
-  const lng = props.location && props.location.longitude;
+  const lat = props.latitude;
+  const lng = props.longitude;
 
   return (
-    <GoogleMap defaultZoom={13} defaultCenter={{ lat, lng }}>
+    <GoogleMap onClick={props.onClick} defaultZoom={10} center={{ lat, lng }}>
       {props.children}
     </GoogleMap>
   )
