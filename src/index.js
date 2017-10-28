@@ -9,12 +9,16 @@ import LocationProvider from './util/LocationProvider';
 import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
 import Overlay from './components/Overlay';
+import LocationProvider from './util/LocationProvider';
+
+const Locator = new LocationProvider();
 
 const Locator = new LocationProvider();
 
 class App extends Component {
   constructor (props) {
     super(props);
+
     this.state = {
       loading: true,
       location: Locator.get()

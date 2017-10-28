@@ -22,7 +22,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
-      title: 'ChemnitzHackt 2017 - Staffbase',
+      title: 'Picky Palate',
       template: 'index.ejs',
       filename: 'index.html'
     }),
