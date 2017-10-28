@@ -5,10 +5,10 @@ import 'normalize.css';
 import './style/index.scss';
 
 import LocationProvider from './util/LocationProvider';
-
 import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
 import Overlay from './components/Overlay';
+import DetailView from './components/DetailView';
 
 const Locator = new LocationProvider();
 
@@ -28,7 +28,9 @@ class App extends Component {
     return (
       <AppContainer>
         <AddButton />
-        <Overlay />
+        <Overlay>
+          <DetailView/>
+        </Overlay>
       </AppContainer>
     );
   }
