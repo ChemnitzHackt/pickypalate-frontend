@@ -32,6 +32,7 @@ class App extends Component {
     this.updateFilters = this.updateFilters.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
+    this.updatePlaces();
   }
 
   handleAddClick () {
@@ -95,8 +96,8 @@ class App extends Component {
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
         {this.state.showDetailOverlay === true &&
-          <Overlay > 
-            <DetailView onClose={this.handleMapClick}/> 
+          <Overlay> 
+            <DetailView data={this.state.details} onClose={this.handleMapClick}/> 
           </Overlay> }
         <AddButton onClick= {this.handleAddClick} />
       </AppContainer>
