@@ -4,15 +4,55 @@ import Overlay from './Overlay';
 import FilterItem from './FilterItem';
 
 const FILTERS = {
-  'diet:gluten_free': {
-    title: 'Gluten free'
+  'diet:pescetarian': {
+    title: 'Pescetarian',
+    description: 'no land-dwelling meat, but allows fish'
   },
   'diet:vegetarian': {
-    title: 'Vegetarian'
+    title: 'Vegetarian',
+    description: 'no fish or meat'
+  },
+  'diet:lacto_vegetarian': {
+    title: 'Lacto-Vegetarian',
+    description: 'no fish, meat or eggs'
+  },
+  'diet:ovo_vegetarian': {
+    title: 'Ovo-Vegetarian',
+    description: 'no fish, meat or dairy'
   },
   'diet:vegan': {
-    title: 'Vegan'
+    title: 'Vegan',
+    description: 'no fish, meat, dairy, eggs or any other animal products'
+  },
+  'diet:fruitarian': {
+    title: 'Fruitarian',
+    description: 'only fruit, nuts and seeds'
+  },
+  'diet:raw': {
+    title: 'Raw',
+    description: 'uncooked and unprocessed only'
+  },
+  'diet:gluten_free': {
+    title: 'Gluten free',
+    description: 'no gluten in food'
+  },
+  'diet:dairy_free': {
+    title: 'Dairy free',
+    description: 'no milk or other dairy products in food'
+  },
+  'diet:lactose_free': {
+    title: 'Lactose free',
+    description: 'no lactose in food'
+  },
+  'diet:halal': {
+    title: 'Halal',
+    description: 'permissible for consumption by Muslims'
+  },
+  'diet:kosher': {
+    title: 'Kosher',
+    description: 'kosher food'
   }
+
 };
 
 class FilterView extends Component {
@@ -42,8 +82,16 @@ class FilterView extends Component {
   }
 
   render () {
-    const filterItems = Object.keys(FILTERS).map((filter, idx) => {
-      return <FilterItem onClick={this.onClickItem} filter={filter} title={FILTERS[filter].title} key={idx} selected={ this.state.filters.indexOf(filter) !== -1 } />
+    const filterItems = Object.keys(FILTERS).sort().map((filter, idx) => {
+      return (
+        <FilterItem onClick={this.onClickItem}
+          filter={filter}
+          title={FILTERS[filter].title}
+          description={FILTERS[filter].description}
+          key={idx}
+          selected={ this.state.filters.indexOf(filter) !== -1 }
+        />
+      );
     });
 
     return (
