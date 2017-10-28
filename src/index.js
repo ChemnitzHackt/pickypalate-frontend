@@ -5,6 +5,7 @@ import 'normalize.css';
 import './style/index.scss';
 
 import AppContainer from './components/AppContainer';
+import Overlay from './components/Overlay';
 
 class App extends Component {
   constructor (props) {
@@ -17,7 +18,7 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        Hello World
+        <Overlay></Overlay>
       </AppContainer>
     );
   }
