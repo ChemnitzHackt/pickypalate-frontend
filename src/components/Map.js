@@ -14,8 +14,8 @@ const Map = compose(
   withScriptjs,
   withGoogleMap
 )(props => {
-  const lat = props.location && parseFloat(props.location.latitude);
-  const lng = props.location && parseFloat(props.location.longitude);
+  const lat = props.location && props.location.latitude;
+  const lng = props.location && props.location.longitude;
 
   return (
     <GoogleMap defaultZoom={8} defaultCenter={{ lat, lng }}>
