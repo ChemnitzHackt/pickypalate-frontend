@@ -9,7 +9,7 @@ class AddButton extends Component {
 
   render () {
     return (
-      <Button className="add-marker icon-only primary">
+      <Button onClick={this.props.onClick} className="add-marker icon-only primary">
         <i className="material-icons">add_location</i>
       </Button>
     );

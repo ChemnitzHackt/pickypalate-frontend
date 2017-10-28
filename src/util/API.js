@@ -41,7 +41,7 @@ const api = {
    * @param {float} west
    * @param {float} north
    * @param {float} east
-   * @return {Promise}
+   * @return {Promise} a promise that will return the json data.
    */
   getNodesForMap: ({south, west, north, east}) => {
     const query = `[out:json]
@@ -55,7 +55,6 @@ const api = {
 out;
 >;
 out skel qt;`
-    console.log(query)
 
     const queryRequest = new Request(`http://overpass-api.de/api/interpreter`, {
         method: 'POST',
@@ -63,7 +62,10 @@ out skel qt;`
       }
     )
     return fetch(queryRequest)
-
+      .then((result) => {
+        return result.json()
+      })
+      .catch(console.error)
   }
 
 }
