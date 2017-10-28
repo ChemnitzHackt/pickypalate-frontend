@@ -4,9 +4,14 @@ import 'babel-polyfill';
 import 'normalize.css';
 import './style/index.scss';
 
+import LocationProvider from './util/LocationProvider';
+
 import AppContainer from './components/AppContainer';
+import AddButton from './components/AddButton';
 import Overlay from './components/Overlay';
 import LocationProvider from './util/LocationProvider';
+
+const Locator = new LocationProvider();
 
 const Locator = new LocationProvider();
 
@@ -25,7 +30,8 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        <Overlay></Overlay>
+        <AddButton />
+        <Overlay />
       </AppContainer>
     );
   }
