@@ -1,0 +1,40 @@
+.overlay-container.filter-view {
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .filter-item {
+    line-height: 2em;
+    padding: 1em;
+    background-color: #8BC34A;
+    color: #fff;
+    border-bottom: 1px solid #4CAF50;
+    cursor: pointer;
+    position: relative;
+
+    &.selected:after {
+      content: 'check';
+      font-family: 'Material Icons';
+      font-feature-settings: 'liga';
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      margin-top: -16px;
+    }
+
+    &:hover, &:active {
+      background-color: #a2ce70;
+    }
+
+    &:first-child {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border: none;
+    }
+  }
+}

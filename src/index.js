@@ -11,6 +11,7 @@ import AddButton from './components/AddButton';
 import FilterButton from './components/FilterButton';
 import Overlay from './components/Overlay';
 import DetailView from './components/DetailView';
+import FilterView from './components/FilterView';
 import Map from './components/Map';
 import { Marker } from 'react-google-maps';
 
@@ -30,6 +31,7 @@ class App extends Component {
     };
 
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.updateFilters = this.updateFilters.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
   }
 
@@ -69,6 +71,11 @@ class App extends Component {
     });
   }
 
+  updateFilters (filters) {
+    this.setState({ filters });
+    this.updatePlaces();
+  }
+
   render () {
     return (
       <AppContainer>
@@ -78,8 +85,9 @@ class App extends Component {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
-        <FilterButton />
+        <FilterButton onClick={() => this.setState({ showFilterOverlay: true })} />
         {this.state.showAddOverlay === true && <AddView /> }
+        {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
         {this.state.showDetailOverlay === true &&
           <Overlay> 
             <DetailView /> 
