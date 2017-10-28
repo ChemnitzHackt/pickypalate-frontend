@@ -6,11 +6,11 @@ import './style/index.scss';
 import api from './util/API';
 
 import LocationProvider from './util/LocationProvider';
-
 import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
 import FilterButton from './components/FilterButton';
 import Overlay from './components/Overlay';
+import DetailView from './components/DetailView';
 import Map from './components/Map';
 import {Marker} from "react-google-maps";
 
@@ -75,7 +75,7 @@ class App extends Component {
         {this.state.showDetailOverlay == true && <div>{this.state.details}</div> }
         <FilterButton />
         {this.state.showAddOverlay == true && <AddView /> }
-        {this.state.showDetailOverlay == true && <AddView /> }
+        {this.state.showDetailOverlay == true && <Overlay> <DetailView/> </Overlay> }
         <AddButton onClick= {this.handleAddClick} />
       </AppContainer>
     );
