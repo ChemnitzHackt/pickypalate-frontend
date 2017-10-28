@@ -25,26 +25,13 @@ class App extends Component {
       location: Locator.get(),
       showAddOverlay: false,
       showDetailOverlay: false,
+      loading: true,
+      places: [],
     };
 
     Locator.onChange(location => this.setState({ location }));
 
     this.handleAddClick = this.handleAddClick.bind(this);
-  }
-
-  handleAddClick() {
-    this.setState({showAddOverlay:true}); 
-      loading: true,
-      location: Locator.get(),
-      places: [],
-      showDetailOverlay: false,
-      details: null,
-    }
-
-    Locator.onChange((location) => {
-      console.log('get new loc', location);
-      this.setState({ location })
-    });
 
     // load the gluten_free locations
     api.getNodesForMap({
@@ -55,6 +42,15 @@ class App extends Component {
     }).then((data) => {
       this.setState({places: data.elements})
     })
+
+    Locator.onChange((location) => {
+      console.log('get new loc', location);
+      this.setState({ location })
+    });
+  }
+
+  handleAddClick() {
+    alert('show details');
   }
 
   renderMarkers (place) {
@@ -72,10 +68,12 @@ class App extends Component {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
-        {this.state.showDetailOverlay == true && <div>{this.state.details}</div> }
         <FilterButton />
         {this.state.showAddOverlay == true && <AddView /> }
-        {this.state.showDetailOverlay == true && <Overlay> <DetailView/> </Overlay> }
+        {this.state.showDetailOverlay == true && 
+          <Overlay> 
+            <DetailView/> 
+          </Overlay> }
         <AddButton onClick= {this.handleAddClick} />
       </AppContainer>
     );
