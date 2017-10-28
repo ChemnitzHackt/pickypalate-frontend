@@ -12,8 +12,6 @@ import Overlay from './components/Overlay';
 
 const Locator = new LocationProvider();
 
-const Locator = new LocationProvider();
-
 class App extends Component {
   constructor (props) {
     super(props);
