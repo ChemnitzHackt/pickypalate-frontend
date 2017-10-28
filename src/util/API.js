@@ -32,6 +32,10 @@ const api = {
       .then((response) => {
         return response.text()
       })
+      .catch((err) => {
+        console.error(err);
+        return ''
+      })
   },
 
   /**
@@ -41,31 +45,36 @@ const api = {
    * @param {float} west
    * @param {float} north
    * @param {float} east
-   * @return {Promise} a promise that will return the json data.
+   * @return {Promise} a promise that will return the json data as array
    */
-  getNodesForMap: ({south, west, north, east}) => {
-    const query = `[out:json]
-[timeout:25]
-;
-(
-  node
-    ["diet:gluten_free"="yes"]
-    (${south},${west},${north},${east});
-);
-out;
->;
-out skel qt;`
+  getNodesForMap: ({filters, south, west, north, east}) => {
+    const nodes = filters.map(filter => {
+      return `node ["${filter}"="yes"] (${south},${west},${north},${east});`;
+    });
 
-    const queryRequest = new Request(`http://overpass-api.de/api/interpreter`, {
-        method: 'POST',
-        body: query
-      }
-    )
+    const query = `[out:json]
+      [timeout:25]
+      ;
+      (
+        ${nodes.join('\n')}
+      );
+      out;
+      >;
+      out skel qt;`
+
+    const queryRequest = new Request('http://overpass-api.de/api/interpreter', {
+      method: 'POST',
+      body: query
+    });
+
     return fetch(queryRequest)
       .then((result) => {
         return result.json()
       })
-      .catch(console.error)
+      .catch((err) => {
+        console.error(err);
+        return []
+      })
   }
 
 }
