@@ -4,16 +4,17 @@ import 'babel-polyfill';
 import 'normalize.css';
 import './style/index.scss';
 
+import LocationProvider from './util/LocationProvider';
+
 import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
-import LocationProvider from './util/LocationProvider';
+import Overlay from './components/Overlay';
 
 const Locator = new LocationProvider();
 
 class App extends Component {
   constructor (props) {
     super(props);
-
     this.state = {
       loading: true,
       location: Locator.get()
@@ -26,6 +27,7 @@ class App extends Component {
     return (
       <AppContainer>
         <AddButton />
+        <Overlay />
       </AppContainer>
     );
   }
