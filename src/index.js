@@ -25,7 +25,9 @@ class App extends Component {
     this.state = {
       loading: true,
       location: Locator.get(),
-      places: []
+      places: [],
+      showDetailOverlay: false,
+      details: null,
     }
 
     Locator.onChange((location) => {
@@ -47,7 +49,7 @@ class App extends Component {
   renderMarkers (place) {
     console.log('rendering place:', place)
     return (
-      <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} />
+      <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} onClick={() => this.setState({showDetailOverlay:true, details:place.tags.name})}/>
     )
   }
 
@@ -59,6 +61,7 @@ class App extends Component {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
+        {this.state.showDetailOverlay == true && <div>{this.state.details}</div> }
         <FilterButton />
         <AddButton />
       </AppContainer>

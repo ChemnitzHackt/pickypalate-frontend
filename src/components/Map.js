@@ -18,7 +18,7 @@ const Map = compose(
   const lng = props.location && parseFloat(props.location.longitude);
 
   return (
-    <GoogleMap defaultZoom={8} defaultCenter={{ lat, lng }}>
+    <GoogleMap defaultZoom={13} defaultCenter={{ lat, lng }}>
       {props.children}
     </GoogleMap>
   )
