@@ -65,7 +65,7 @@ class LocationProvider {
    * @memberof LocationProvider
    */
   _listen () {
-    setInterval(this._update, 15000);
+    setInterval(this._update, 5000);
   }
 }
 

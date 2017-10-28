@@ -1,15 +1,26 @@
 import React from 'react';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { compose, withProps } from "recompose";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
-const position = [51.505, -0.09];
+const GOOGLE_MAPS_API_KEY = 'AIzaSyDlahMtbvEn2WGTdbBZ0mp7Kew5Q8m4AEU';
 
-const MapComponent = (props) => (
-  <div>
-  <Map center={position} zoom={7}>
-    <TileLayer
-      url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    />
-  </Map>
-  </div>
-);
+const Map = compose(
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=" + GOOGLE_MAPS_API_KEY + "&v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div className="map--loader" />,
+    containerElement: <div className="map--container" />,
+    mapElement: <div  className="map--view" />
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props => {
+  const lat = props.location && parseFloat(props.location.latitude);
+  const lng = props.location && parseFloat(props.location.longitude);
+
+  return (
+    <GoogleMap defaultZoom={8} defaultCenter={{ lat, lng }}>
+      <Marker position={{ lat, lng }} />
+    </GoogleMap>
+  )
+});
+export default Map;

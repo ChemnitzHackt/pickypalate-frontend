@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import 'babel-polyfill';
 import 'normalize.css';
 import './style/index.scss';
@@ -10,6 +11,7 @@ import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
 import FilterButton from './components/FilterButton';
 import Overlay from './components/Overlay';
+import Map from './components/Map';
 
 const Locator = new LocationProvider();
 
@@ -28,6 +30,7 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
+        <Map location={ this.state.location } />
         <FilterButton />
         <AddButton />
       </AppContainer>
