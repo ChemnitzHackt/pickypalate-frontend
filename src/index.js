@@ -15,7 +15,6 @@ import FilterView from './components/FilterView';
 import Map from './components/Map';
 import { Marker } from 'react-google-maps';
 
-
 const Locator = new LocationProvider();
 
 class App extends Component {
@@ -30,13 +29,19 @@ class App extends Component {
       filters: ['diet:gluten_free', 'diet:vegan']
     };
 
-    this.handleAddClick = this.handleAddClick.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
+    this.handleMapClick = this.handleMapClick.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
   }
 
   handleAddClick () {
     alert('show details');
+  }
+
+  handleMapClick () {
+    // hide details
+    if(this.state.showDetailOverlay)
+      this.setState({showDetailOverlay:false});
   }
 
   renderMarkers (place) {
@@ -79,8 +84,8 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        <Map longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
-          <Marker position={{lat: this.state.location.latitude, lng: this.state.location.longitude}} />
+        <Map  onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
+          <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           {
             this.state.places.map((place) => this.renderMarkers(place))
           }
@@ -89,8 +94,8 @@ class App extends Component {
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
         {this.state.showDetailOverlay === true &&
-          <Overlay> 
-            <DetailView /> 
+          <Overlay > 
+            <DetailView onClose={this.handleMapClick}/> 
           </Overlay> }
         <AddButton onClick= {this.handleAddClick} />
       </AppContainer>

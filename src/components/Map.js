@@ -19,7 +19,7 @@ const Map = compose(
   const lng = props.longitude;
 
   return (
-    <GoogleMap defaultZoom={10} center={{ lat, lng }}>
+    <GoogleMap onClick={props.onClick} defaultZoom={10} center={{ lat, lng }}>
       {props.children}
     </GoogleMap>
   )
