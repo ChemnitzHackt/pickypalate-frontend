@@ -39,9 +39,10 @@ class App extends Component {
   }
 
   handleMapClick () {
-    // hide details
-    if(this.state.showDetailOverlay)
-      this.setState({showDetailOverlay:false});
+    this.setState({
+      showDetailOverlay: false,
+      showFilterOverlay: false
+    });
   }
 
   renderMarkers (place) {
@@ -90,7 +91,7 @@ class App extends Component {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
-        <FilterButton onClick={() => this.setState({ showFilterOverlay: true })} />
+        <FilterButton onClick={() => this.setState({ showFilterOverlay: !this.state.showFilterOverlay })} />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
         {this.state.showDetailOverlay === true &&
