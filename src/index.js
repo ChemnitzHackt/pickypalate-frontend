@@ -32,7 +32,6 @@ class App extends Component {
     this.updateFilters = this.updateFilters.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
-    this.updatePlaces();
   }
 
   handleAddClick () {
@@ -86,7 +85,7 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        <Map  onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
+        <Map onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
           <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           {
             this.state.places.map((place) => this.renderMarkers(place))
