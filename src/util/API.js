@@ -32,6 +32,10 @@ const api = {
       .then((response) => {
         return response.text()
       })
+      .catch((err) => {
+        console.error(err);
+        return ''
+      })
   },
 
   /**
@@ -41,7 +45,7 @@ const api = {
    * @param {float} west
    * @param {float} north
    * @param {float} east
-   * @return {Promise} a promise that will return the json data.
+   * @return {Promise} a promise that will return the json data as array
    */
   getNodesForMap: ({filters, south, west, north, east}) => {
     const nodes = filters.map(filter => {
@@ -67,7 +71,10 @@ const api = {
       .then((result) => {
         return result.json()
       })
-      .catch(console.error)
+      .catch((err) => {
+        console.error(err);
+        return []
+      })
   }
 
 }
