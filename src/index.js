@@ -22,6 +22,18 @@ class App extends Component {
     super(props);
 
     this.state = {
+      location: Locator.get(),
+      showAddOverlay: false,
+      showDetailOverlay: false,
+    };
+
+    Locator.onChange(location => this.setState({ location }));
+
+    this.handleAddClick = this.handleAddClick.bind(this);
+  }
+
+  handleAddClick() {
+    this.setState({showAddOverlay:true}); 
       loading: true,
       location: Locator.get(),
       places: [],
@@ -62,7 +74,9 @@ class App extends Component {
         </Map>
         {this.state.showDetailOverlay == true && <div>{this.state.details}</div> }
         <FilterButton />
-        <AddButton />
+        {this.state.showAddOverlay == true && <AddView /> }
+        {this.state.showDetailOverlay == true && <AddView /> }
+        <AddButton onClick= {this.handleAddClick} />
       </AppContainer>
     );
   }
