@@ -9,6 +9,7 @@ import LocationProvider from './util/LocationProvider';
 import AppContainer from './components/AppContainer';
 import AddButton from './components/AddButton';
 import FilterButton from './components/FilterButton';
+import SearchButton from './components/SearchButton';
 import Overlay from './components/Overlay';
 import DetailView from './components/DetailView';
 import Map from './components/Map';
@@ -75,6 +76,7 @@ class App extends Component {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
+        <SearchButton />
         <FilterButton />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showDetailOverlay === true &&
