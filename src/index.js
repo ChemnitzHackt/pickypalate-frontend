@@ -150,6 +150,13 @@ class App extends Component {
       details.tags[key] = 'yes'    
     });
 
+    this.state.places.map(function(item, index){
+      if(item.id == details.id)
+        return details;
+
+        return item;
+    });
+
 
     this.setState({ details });
     api.updateNode(details);
