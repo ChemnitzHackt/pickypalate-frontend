@@ -1,3 +1,20 @@
+const handleCallResult = res => {
+  if ((res.status >= 200 && res.status <= 204) || res.status === 0) {
+    return Promise.resolve(res);
+  } else {
+    return new Promise((resolve, reject) => {
+      res
+        .json()
+        .then(result => {
+          reject(result);
+        })
+        .catch(() => {
+          reject(res);
+        });
+    });
+  }
+};
+
 const api = {
 
   /**
@@ -29,6 +46,7 @@ const api = {
     })
 
     return fetch(getRequest)
+      .then(handleCallResult)
       .then((response) => {
         return response.text()
       })
@@ -68,6 +86,7 @@ const api = {
     });
 
     return fetch(queryRequest)
+      .then(handleCallResult)
       .then((result) => {
         return result.json()
       })
