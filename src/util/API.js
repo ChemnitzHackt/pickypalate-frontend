@@ -33,7 +33,7 @@ const api = {
         return response.text()
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err)
         return ''
       })
   },
@@ -49,8 +49,8 @@ const api = {
    */
   getNodesForMap: ({filters, south, west, north, east}) => {
     const nodes = filters.map(filter => {
-      return `node ["${filter}"="yes"] (${south},${west},${north},${east});`;
-    });
+      return `node ["${filter}"="yes"] (${south},${west},${north},${east});`
+    })
 
     const query = `[out:json]
       [timeout:25]
@@ -65,14 +65,38 @@ const api = {
     const queryRequest = new Request('http://overpass-api.de/api/interpreter', {
       method: 'POST',
       body: query
-    });
+    })
 
     return fetch(queryRequest)
       .then((result) => {
         return result.json()
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err)
+        return []
+      })
+  },
+
+  /**
+   * Calling the backend for the data.
+   * @param {array<String>} filters
+   * @param {float} lat
+   * @param {float} lon
+   * @return {Promise.<T>}
+   */
+  getNodesFromBackend: ({filters, lat, lon}) => {
+    const qFilter = filters.join(',')
+    const queryRequest = new Request(`http://localhost:3000/api/places/${lat}/${lon}/${qFilter}`, {
+      method: 'GET',
+    })
+    console.log('calling the backend');
+
+    return fetch(queryRequest)
+      .then((result) => {
+        return result.json()
+      })
+      .catch((err) => {
+        console.error(err)
         return []
       })
   }

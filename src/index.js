@@ -71,12 +71,10 @@ class App extends Component {
   }
 
   updatePlaces () {
-    api.getNodesForMap({
+    api.getNodesFromBackend({
       filters: this.state.filters,
-      south: this.state.location.latitude - 0.5,
-      west: this.state.location.longitude - 0.5,
-      north: this.state.location.latitude + 0.5,
-      east: this.state.location.longitude + 0.5
+      lat: this.state.location.latitude,
+      lon: this.state.location.longitude
     }).then((data) => {
       console.log('updated places:', data.elements);
       this.setState({places: data.elements})
