@@ -1,18 +1,23 @@
 import React from "react";
 
 const DetailView = function(props) {
+    var glutenfree = (props.data["diet:gluten_free"] === "yes") ? "glutenfree-icon" : "";
+    var vegan = (props.data["diet:vegan"] === "yes") ? "vegan-icon" : "";
+    var vegetarian = (props.data["diet:gluten_free"] === "yes") ? "glutenfree-icon" : "";
+
+
     return (
         <div className="detail-view-container">
             <header>
                 <h1>{props.data.name || ""}</h1>
                 <div className="icons">
-                    <div className="glutenfree-icon">
+                    <div className={glutenfree}>
 
                     </div>
-                    <div className="vegan-icon">
+                    <div className={vegan}>
                         
                     </div>
-                    <div className="vegetarian-icon">
+                    <div className={vegetarian}>
                         
                     </div>
                 </div>
