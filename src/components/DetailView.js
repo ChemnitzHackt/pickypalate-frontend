@@ -36,8 +36,8 @@ const DetailView = function(props) {
                 <address>
                     <dl>
                         <dt><strong>Address:</strong></dt>
-                        <dd>{props.data["addr:street"]+" " +props.data["addr:housenumber"] || ""}</dd>
-                        <dd>{props.data["addr:postcode"]+" "+props.data["addr:city"] || ""}</dd>
+                        <dd>{(props.data["addr:street"] || '') + " " + (props.data["addr:housenumber"] || "")}</dd>
+                        <dd>{(props.data["addr:postcode"]||'') + " " + (props.data["addr:city"] || "")}</dd>
                     </dl>
                 </address>
                 <time className="opening-times">
