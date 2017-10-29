@@ -101,6 +101,7 @@ class App extends Component {
         tags={place.tags}
         onClick={() => this.setState({
           showDetailOverlay: true,
+          showFilterOverlay: false,
           details: place.tags
         })}
       />
@@ -108,7 +109,7 @@ class App extends Component {
   }
 
   toggleSearch () {
-    this.setState({showSearch: !this.state.showSearch});
+    this.setState({showSearch: !this.state.showSearch, showDetailOverlay: false, showFilterOverlay: false});
   }
 
   updateLocation (location) {

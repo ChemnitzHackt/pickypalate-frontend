@@ -3,11 +3,13 @@
   height: 90%;
   margin: auto;
   max-width: 400px;
-  max-height: 400px;
+  max-height: 500px;
   border-radius: 10px;
   background-color: #fff;
   z-index: 1000;
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
   box-shadow: 0 1px 10px 0 rgba(0,0,0,.15);
 
   button.close {
@@ -22,6 +24,23 @@
   button.close:active {
     background-color: #f86962;
   }
+
+  header {
+    margin: -1em -1em 1em -1em;
+    padding: 1em;
+    background-color: #FFC107;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .overlay-container.detail-view {
+    top: 2em !important;
+    transform: none !important;
+    bottom: auto !important;
+  }
 }
 
 .overlay-container.filter-view {
@@ -30,6 +49,7 @@
   transform: translateY(-50%);
   max-height: 80%;
   overflow: scroll;
+  z-index: 1100;
 
   .filter-item {
     padding: 1em;
