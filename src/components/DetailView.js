@@ -1,5 +1,8 @@
 import React from "react";
 
+import Overlay from './Overlay';
+import Button from './Button';
+
 const DetailView = function(props) {
     var glutenfree = (props.data["diet:gluten_free"] === "yes") ? "glutenfree-icon" : "";
     var vegan = (props.data["diet:vegan"] === "yes") ? "vegan-icon" : "";
@@ -7,7 +10,11 @@ const DetailView = function(props) {
 
 
     return (
-        <div className="detail-view-container">
+        <Overlay className="detail-view">
+            <Button onClick={props.onClose} className="close icon-only secondary">
+                <i className="material-icons">clear</i>
+            </Button>
+            
             <header>
                 <h1>{props.data.name || ""}</h1>
                 <div className="icons">
@@ -54,7 +61,7 @@ const DetailView = function(props) {
 
             </footer>
             {props.children}
-        </div>
+        </Overlay>
     ); 
 };
 
