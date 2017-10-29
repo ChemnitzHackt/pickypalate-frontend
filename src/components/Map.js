@@ -4,6 +4,8 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-map
 import SearchBox from "react-google-maps/lib/components/places/SearchBox";
 import LocationProvider from './../util/LocationProvider';
 
+import Styles from './MapStyles';
+
 const GOOGLE_MAPS_API_KEY = 'AIzaSyDlahMtbvEn2WGTdbBZ0mp7Kew5Q8m4AEU';
 
 const Map = compose(
@@ -32,7 +34,7 @@ const Map = compose(
               places[0].geometry.location.lat(),
               places[0].geometry.location.lng());
 
-        },
+        }
       })
     },
   }),
@@ -43,12 +45,17 @@ const Map = compose(
   const lng = props.longitude;
 
   return (
-    <GoogleMap onClick={props.onClick} defaultZoom={10} center={{ lat, lng }}>
-       {props.showSearch && <SearchBox
-          controlPosition={google.maps.ControlPosition.TOP_CENTER}
-          onPlacesChanged={props.onPlacesChanged}
-          ref={props.onSearchBoxMounted}>
-          <input
+    <GoogleMap
+      onClick={props.onClick}
+      defaultZoom={13}
+      center={{ lat, lng }}
+      defaultOptions={{ styles: Styles[ props.isDay ? 'Day' : 'Night' ] }}
+    >
+      {props.showSearch && <SearchBox
+        controlPosition={google.maps.ControlPosition.TOP_CENTER}
+        onPlacesChanged={props.onPlacesChanged}
+        ref={props.onSearchBoxMounted}>
+        <input
           type="text"
           placeholder="Start typing"
           style={{
@@ -64,11 +71,10 @@ const Map = compose(
             outline: `none`,
             textOverflow: `ellipses`,
           }}
-          />
-        </SearchBox>
-      }
-
+        />
+      </SearchBox>}
+      {props.children}
     </GoogleMap>
-  )
+  );
 });
 export default Map;

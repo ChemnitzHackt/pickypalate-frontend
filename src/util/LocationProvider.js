@@ -3,6 +3,8 @@ const LOCATION = {
   longitude: 13.3907
 };
 
+let MANUAL_MODE = false;
+
 let UPDATE_CALLBACK;
 
 /**
@@ -11,16 +13,23 @@ let UPDATE_CALLBACK;
  * @class LocationProvider
  */
 class LocationProvider {
-  
+
   /**
    * Constructor.
    * 
    * @memberof LocationProvider
    */
   constructor () {
-    this.update();
-    this._listen();
-    this.manualMode = false;
+    const init = () => {
+      this.update();
+      this._listen();      
+    }
+
+    if (window.cordova) {
+      document.addEventListener('deviceready', init, false);
+    } else {
+      init();
+    }
   }
 
   /**
@@ -34,26 +43,25 @@ class LocationProvider {
   }
 
   /**
-   * 
+   * Switch location service to manual mode
    * 
    * @param {Function} callback - the callback to call upon changes
    * @param {Function} callback - the callback to call upon changes
    * @memberof LocationProvider
    */
   switchToManualMode (lat, lng) {
-    
-    this.manualMode = true;
+    MANUAL_MODE = true;
 
     LOCATION.latitude = lat;
     LOCATION.longitude = lng;
     
     if (UPDATE_CALLBACK) {
-        UPDATE_CALLBACK(LOCATION);
+      UPDATE_CALLBACK(LOCATION);
     }
   }
 
-  switchToAutomaticMode() {
-    this.manualMode = false;
+  switchToAutomaticMode () {
+    MANUAL_MODE = false;
     this.update();
   }
 
@@ -73,11 +81,10 @@ class LocationProvider {
    * @memberof LocationProvider
    */
   update () {
-
-    if (this.manualMode)
+    if (MANUAL_MODE) {
       return;
+    }
 
-    console.log('[LocationProvider] Updating ...');
     navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition(({ coords }) => {
       LOCATION.longitude = coords.longitude;
       LOCATION.latitude = coords.latitude;
@@ -89,12 +96,15 @@ class LocationProvider {
 
   /**
    * Listen for location changes.
-   * TODO: @adfr do real change listening here
    * 
    * @memberof LocationProvider
    */
   _listen () {
-    setInterval(this._update, 5000);
+    if (navigator && navigator.geolocation && navigator.geolocation.watchPosition) {
+      navigator.geolocation.watchPosition(this.update);
+    } else {
+      setInterval(this._update, 5000);
+    } 
   }
 }
 

@@ -3,6 +3,7 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+  user-select: none;
 }
 
 button.icon-only {
@@ -35,15 +36,6 @@ button.icon-only.primary > i {
   font-size: 2em;
 }
 
-button.icon-only.secondary {
-  background-color: #03A9F4;
-}
-
-button.icon-only.secondary:hover,
-button.icon-only.secondary:active {
-  background-color: #40b6f3;
-} 
-
 button.icon-only.secondary > i {
   color: #fff;
 }
@@ -55,15 +47,6 @@ button.add-marker {
   z-index: 100;
 }
 
-@media screen and (max-width: 600px) {
-  button.add-marker {
-    left: 0;
-    right: 0;
-    bottom: -0.75em;
-    margin: 0 auto;
-  }
-}
-
 button.filters {
   position: absolute;
   right: 2em;
@@ -71,9 +54,53 @@ button.filters {
   z-index: 100;
 }
 
+button.filters {
+  position: absolute;
+  right: 2em;
+  top: 2em;
+  z-index: 100;
+  background-color: #4CAF50;
+}
+
+button.filters:hover,
+button.filters:active {
+  background-color: #71be74;
+}
+
 button.search {
   position: absolute;
   left: 2em;
   top: 2em;
   z-index: 100;
+  background-color: #e91e63 !important;
+} 
+
+button.search:hover,
+button.search:active {
+  background-color: #e74b7d !important;
+} 
+
+@media screen and (max-width: 600px) {
+  button.add-marker {
+    left: 0;
+    right: 0;
+    bottom: -0.75em;
+    margin: 0 auto;
+  }
+
+  button.filters {
+    right: 6.8em;
+    bottom: -0.4em;
+    top: auto;
+    border-bottom-left-radius: 0;
+    z-index: 90;
+  }
+
+  button.search {
+    left: 6.8em;
+    bottom: -0.4em;
+    top: auto;
+    border-bottom-right-radius: 0;
+    z-index: 90;
+  }
 }
