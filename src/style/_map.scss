@@ -17,4 +17,45 @@
   button, a {
     display: none !important;
   }
+
+  input {
+    padding: 0 1em !important;
+    height: auto !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,.15) !important;
+    font-size: 15px !important;
+    height: 52px !important;
+    line-height: 52px !important;
+    top: 2em !important;
+    left: calc(3em + 50px) !important;
+    right: auto !important;
+    margin: 0 auto !important;
+    border: none !important;
+  }
+
+}
+
+.pac-container {
+  border-radius: 10px !important;
+  margin-top: 0.5em !important;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,.15) !important;
+
+  .pac-item {
+    padding: 1em !important;
+    cursor: pointer !important;
+    position: relative !important;
+    user-select: none !important;
+  }
+
+  &.pac-logo:after {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .map--view input {
+    width: 90% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
 }
