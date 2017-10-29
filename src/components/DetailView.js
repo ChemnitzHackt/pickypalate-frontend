@@ -6,7 +6,7 @@ import Button from './Button';
 const DetailView = function(props) {
     var glutenfree = (props.data["diet:gluten_free"] === "yes") ? "glutenfree-icon" : "";
     var vegan = (props.data["diet:vegan"] === "yes") ? "vegan-icon" : "";
-    var vegetarian = (props.data["diet:gluten_free"] === "yes") ? "glutenfree-icon" : "";
+    var vegetarian = (props.data["diet:vegetarian"] === "yes") ? "vegetarian-icon" : "";
 
 
     return (
@@ -18,15 +18,9 @@ const DetailView = function(props) {
             <header>
                 <h1>{props.data.name || ""}</h1>
                 <div className="icons">
-                    <div className={glutenfree}>
-
-                    </div>
-                    <div className={vegan}>
-                        
-                    </div>
-                    <div className={vegetarian}>
-                        
-                    </div>
+                    <div className={glutenfree}></div>
+                    <div className={vegan}></div>
+                    <div className={vegetarian}></div>
                 </div>
             </header>
             <main>

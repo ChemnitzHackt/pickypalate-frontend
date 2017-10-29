@@ -33,6 +33,7 @@ body {
   text-align: center;
   padding: 1px;
   background-color: lightgray;
+  height: 50px;
 }
 
 .detail-view-container {
@@ -58,17 +59,26 @@ body {
 .glutenfree-icon{
   background-image: url('icons/glutenfree.svg');
   height: 50px;
+  width: 50px;
+  float: left;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
 .vegan-icon{
-  background-image: url('icons/vegan-icon.jpg');
+  background-image: url('icons/vegan.svg');
   height: 50px;
+  width: 50px;
+  float: left;
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .vegetarian-icon{
-  background-image: url('icons/vegetarian-icon.jpg');
+  background-image: url('icons/vegetarian.svg');
   height: 50px;
+  width: 50px;
+  float: left;
   background-repeat: no-repeat;
+  background-size: contain;
 }
