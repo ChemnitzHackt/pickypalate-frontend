@@ -64,6 +64,9 @@ class App extends Component {
       isDay: isDay()
     };
 
+
+    this.updateFilters = this.updateFilters.bind(this);
+    this.updateTags = this.updateTags.bind(this);
     this.handleMyPositionClick = this.handleMyPositionClick.bind(this);
     this.toggleSearch = this.toggleSearch.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
@@ -80,7 +83,8 @@ class App extends Component {
   handleMapClick () {
     this.setState({
       showDetailOverlay: false,
-      showFilterOverlay: false
+      showFilterOverlay: false,
+      showTagsOverlay: false,
     });
   }
 
@@ -102,7 +106,7 @@ class App extends Component {
         onClick={() => this.setState({
           showDetailOverlay: true,
           showFilterOverlay: false,
-          details: place.tags
+          details: place
         })}
       />
     )
@@ -137,7 +141,35 @@ class App extends Component {
     this.updatePlaces();
   }
 
+  updateTags (tags) {
+    //console.log('update tags');
+    //console.log(tags);
+
+    var details = this.state.details;
+
+    tags.forEach(function(key){
+      details.tags[key] = 'yes'    
+    });
+
+    this.state.places.map(function(item, index){
+      if(item.id == details.id)
+        return details;
+
+        return item;
+    });
+
+
+    this.setState({ details });
+    api.updateNode(details);
+    //console.log(details);
+    this.updatePlaces();
+  }
+
   render () {
+    //console.log('tags');
+    //console.log(this.state.details.tags);
+    //console.log('tags');
+    //console.log(this.state);
     return (
       <AppContainer>
         <Map showSearch={this.state.showSearch} onLatLngChange={this.updateLocationManual} onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} isDay={this.state.isDay} >
@@ -146,11 +178,30 @@ class App extends Component {
         </Map>
 
         <SearchButton onClick={this.toggleSearch}/>
-        <FilterButton onClick={() => this.setState({ showFilterOverlay: !this.state.showFilterOverlay })} />
+        <FilterButton icon='filter_list' onClick={() => this.setState({ showFilterOverlay: !this.state.showFilterOverlay })} />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
-        {this.state.showDetailOverlay === true && <DetailView data={this.state.details} onClose={this.handleMapClick} /> }
+
+        {this.state.showTagsOverlay === true && <FilterView filters={
+         (function(tags){
+
+          var tagslist = [];
+
+            Object.keys(tags).forEach(function(key){
+              if (tags[key] == 'yes' || 
+                tags[key] == 'only')
+                tagslist.push(key);
+            })
+
+            return tagslist;
+         })(this.state.details.tags)
+        } onUpdate={this.updateTags} /> }
+        {this.state.showDetailOverlay === true && <DetailView data={this.state.details.tags} onClose={this.handleMapClick}> 
+          <FilterButton icon='edit' onClick={() => this.setState({ showTagsOverlay: !this.state.showTagsOverlay })} / >
+        </DetailView>
+        }
         <PositionButton onClick={this.handleMyPositionClick} />
+
       </AppContainer>
     );
   }

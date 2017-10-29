@@ -3,7 +3,6 @@ const handleCallResult = res => {
 };
 
 const api = {
-
   /**
    * Updates a OSM node.
    *
@@ -11,10 +10,12 @@ const api = {
    * @param {object} data - The new OSM node data
    * @return {Promise} The update action.
    */
-  updateNode: ({nodeID, data}) => {
-    const updateRequest = new Request(`https://www.openstreetmap.org/api/0.6/node/${nodeID}`, {
-        method: 'PUT',
-        body: data
+  updateNode: (place) => {
+    console.log('update node');
+    console.log(place);
+    const updateRequest = new Request(`http://localhost:3000/api/place/${place.id}`, {
+        method: 'POST',
+        body: JSON.stringify(place)
       }
     )
 

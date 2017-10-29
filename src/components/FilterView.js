@@ -58,7 +58,8 @@ const FILTERS = {
 class FilterView extends Component {
   constructor (props) {
     super(props);
-
+    console.log('Filterview Filters');
+    console.log(this.props.filters);
     this.state = {
       filters: this.props.filters
     };

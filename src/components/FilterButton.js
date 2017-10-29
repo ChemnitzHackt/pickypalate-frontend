@@ -10,7 +10,7 @@ class FilterButton extends Component {
   render () {
     return (
       <Button onClick={this.props.onClick} className="filters icon-only secondary">
-        <i className="material-icons">filter_list</i>
+        <i className="material-icons">{this.props.icon || 'filter_list'}</i>
       </Button>
     );
   }
