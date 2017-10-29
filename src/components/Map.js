@@ -4,8 +4,6 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-map
 
 import Styles from './MapStyles';
 
-console.log(Styles)
-
 const GOOGLE_MAPS_API_KEY = 'AIzaSyDlahMtbvEn2WGTdbBZ0mp7Kew5Q8m4AEU';
 
 const Map = compose(

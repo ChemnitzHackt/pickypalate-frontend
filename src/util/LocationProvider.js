@@ -56,7 +56,6 @@ class LocationProvider {
    * @memberof LocationProvider
    */
   update () {
-    console.log('[LocationProvider] Updating ...');
     navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition(({ coords }) => {
       LOCATION.longitude = coords.longitude;
       LOCATION.latitude = coords.latitude;
