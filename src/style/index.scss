@@ -45,5 +45,67 @@ body {
 .icons {
   text-align: center;
   padding: 1px;
-  background-color: lightgray;
+  height: 50px;
+}
+
+.detail-view-container {
+  padding: 5px;
+}
+
+.detail-view-container h1 {
+  margin: 0.2em 0;
+}
+
+.detail-view-container main {
+  margin: 0.2em 0;
+}
+
+.detail-view-container main address {
+  font-style: inherit;
+}
+
+.telephone-number {
+  margin: 0;
+}
+
+.glutenfree-icon{
+  background-image: url('icons/glutenfree.svg');
+  height: 50px;
+  width: 50px;
+  float: left;
+  margin: 2px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #8BC34A;
+}
+
+.vegan-icon{
+  background-image: url('icons/vegan.svg');
+  height: 50px;
+  width: 50px;
+  float: left;
+  margin: 2px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #8BC34A;
+
+}
+
+.vegetarian-icon{
+  background-image: url('icons/vegetarian.svg');
+  height: 50px;
+  width: 50px;
+  float: left;
+  margin: 2px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #8BC34A;
+}
+
+.amenity{
+  color: #666666;
+}
+
+.no-diet{
+  background-color: #666666;
 }

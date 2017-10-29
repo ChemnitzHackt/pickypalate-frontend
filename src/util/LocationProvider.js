@@ -3,6 +3,8 @@ const LOCATION = {
   longitude: 13.3907
 };
 
+let MANUAL_MODE = false;
+
 let UPDATE_CALLBACK;
 
 /**
@@ -11,7 +13,7 @@ let UPDATE_CALLBACK;
  * @class LocationProvider
  */
 class LocationProvider {
-  
+
   /**
    * Constructor.
    * 
@@ -41,6 +43,29 @@ class LocationProvider {
   }
 
   /**
+   * Switch location service to manual mode
+   * 
+   * @param {Function} callback - the callback to call upon changes
+   * @param {Function} callback - the callback to call upon changes
+   * @memberof LocationProvider
+   */
+  switchToManualMode (lat, lng) {
+    MANUAL_MODE = true;
+
+    LOCATION.latitude = lat;
+    LOCATION.longitude = lng;
+    
+    if (UPDATE_CALLBACK) {
+      UPDATE_CALLBACK(LOCATION);
+    }
+  }
+
+  switchToAutomaticMode () {
+    MANUAL_MODE = false;
+    this.update();
+  }
+
+  /**
    * Subscribe a given callback to location changes.
    * 
    * @param {Function} callback - the callback to call upon changes
@@ -56,6 +81,10 @@ class LocationProvider {
    * @memberof LocationProvider
    */
   update () {
+    if (MANUAL_MODE) {
+      return;
+    }
+
     navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition(({ coords }) => {
       LOCATION.longitude = coords.longitude;
       LOCATION.latitude = coords.latitude;

@@ -7,7 +7,7 @@ import api from './util/API';
 
 import LocationProvider from './util/LocationProvider';
 import AppContainer from './components/AppContainer';
-import AddButton from './components/AddButton';
+import PositionButton from './components/PositionButton';
 import FilterButton from './components/FilterButton';
 import SearchButton from './components/SearchButton';
 import Overlay from './components/Overlay';
@@ -57,21 +57,27 @@ class App extends Component {
       location: Locator.get(),
       showAddOverlay: false,
       showDetailOverlay: false,
+      showSearch: false,
       places: [],
       filters: filters,
       details: {},
       isDay: isDay()
     };
 
+
     this.updateFilters = this.updateFilters.bind(this);
     this.updateTags = this.updateTags.bind(this);
+    this.handleMyPositionClick = this.handleMyPositionClick.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
-
+    this.updateLocationManual = this.updateLocationManual.bind(this);
+    this.updateFilters = this.updateFilters.bind(this);
+    
     Locator.onChange(this.updateLocation.bind(this));
   }
 
-  handleAddClick () {
-    alert('show details');
+  handleMyPositionClick () {
+    Locator.switchToAutomaticMode();
   }
 
   handleMapClick () {
@@ -83,9 +89,18 @@ class App extends Component {
   }
 
   renderMarkers (place) {
+    const dietTags = Object.keys(place.tags)
+      .filter((key) => key.startsWith('diet:'));
+    let opacity = 0.1
+
+
+    if (dietTags.length > 0) {
+      opacity = 1.0
+    }
     return (
       <Marker
         key={place.id}
+        options={{opacity: opacity}}
         position={{lat: place.lat, lng: place.lon}}
         tags={place.tags}
         onClick={() => this.setState({
@@ -96,22 +111,27 @@ class App extends Component {
     )
   }
 
+  toggleSearch () {
+    this.setState({showSearch: !this.state.showSearch});
+  }
+
   updateLocation (location) {
     this.setState({ location });
     this.updatePlaces();
   }
 
   updatePlaces () {
-    console.log('update places');
-    api.getNodesForMap({
+    api.getNodesFromBackend({
       filters: this.state.filters,
-      south: this.state.location.latitude - 0.5,
-      west: this.state.location.longitude - 0.5,
-      north: this.state.location.latitude + 0.5,
-      east: this.state.location.longitude + 0.5
+      lat: this.state.location.latitude,
+      lon: this.state.location.longitude
     }).then((data) => {
       this.setState({places: data.elements || []})
     });
+  }
+
+  updateLocationManual (lat, lng) {
+    Locator.switchToManualMode(lat, lng);
   }
 
   updateFilters (filters) {
@@ -134,21 +154,23 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        <Map onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} isDay={this.state.isDay} >
+        <Map showSearch={this.state.showSearch} onLatLngChange={this.updateLocationManual} onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} isDay={this.state.isDay} >
           <Marker position={{lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           { this.state.places.map((place) => this.renderMarkers(place)) }
         </Map>
 
-        <SearchButton />
+        <SearchButton onClick={this.toggleSearch}/>
         <FilterButton onClick={() => this.setState({ showFilterOverlay: !this.state.showFilterOverlay })} />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
+
         {this.state.showTagsOverlay === true && <FilterView filters={this.state.details.tags} onUpdate={this.updateTags} /> }
         {this.state.showDetailOverlay === true && <DetailView data={this.state.details.tags} onClose={this.handleMapClick}> 
           <FilterButton onClick={() => this.setState({ showTagsOverlay: !this.state.showFilterOverlay })} / >
         </DetailView>
         }
-        <AddButton onClick={this.handleAddClick} />
+        <PositionButton onClick={this.handleMyPositionClick} />
+
       </AppContainer>
     );
   }

@@ -3,7 +3,20 @@ import React from "react";
 import Overlay from './Overlay';
 import Button from './Button';
 
+function setIcon(state, diet){
+    console.log(diet);
+    if (state === "yes")
+        return diet+"-icon";
+    if (state === "no")
+        return diet+"-icon no-diet";
+    return ""
+}
+
 const DetailView = function(props) {
+    var glutenfree = setIcon(props.data["diet:gluten_free"], "glutenfree");
+    var vegan = setIcon(props.data["diet:vegan"], "vegan");
+    var vegetarian = setIcon(props.data["diet:vegetarian"], "vegetarian");
+
     return (
         <Overlay className="detail-view">
             <Button onClick={props.onClose} className="close icon-only secondary">
@@ -12,24 +25,19 @@ const DetailView = function(props) {
             
             <header>
                 <h1>{props.data.name || ""}</h1>
+                <div className="amenity">{(props.data.amenity && props.data.amenity.replace("\_", " ")) || ""}</div>
                 <div className="icons">
-                    <div className="glutenfree-icon">
-
-                    </div>
-                    <div className="vegan-icon">
-                        
-                    </div>
-                    <div className="vegetarian-icon">
-                        
-                    </div>
+                    <div className={glutenfree}></div>
+                    <div className={vegan}></div>
+                    <div className={vegetarian}></div>
                 </div>
             </header>
             <main>
                 <address>
                     <dl>
                         <dt><strong>Address:</strong></dt>
-                        <dd>{props.data["addr:street"]+" " +props.data["addr:housenumber"] || ""}</dd>
-                        <dd>{props.data["addr:postcode"]+" "+props.data["addr:city"] || ""}</dd>
+                        <dd>{(props.data["addr:street"] || '') + " " + (props.data["addr:housenumber"] || "")}</dd>
+                        <dd>{(props.data["addr:postcode"]||'') + " " + (props.data["addr:city"] || "")}</dd>
                     </dl>
                 </address>
                 <time className="opening-times">
@@ -44,12 +52,8 @@ const DetailView = function(props) {
                         <dd>{props.data["phone"] || "No information"}</dd>
                     </dl>
                 </div>
-                <div className="description">
-                    Das im Shabby Chic gestaltete Café bietet zu Kaffee und Frappés feine amerikanische Süßwaren und Eis am Stil.
-                </div>
                 <div className="furtherInformation">
-
-                    { props.data.website && <a href={props.data.website}>Website</a> }
+                    {props.data.website && <a href={props.data.website} target="_blank">Website</a>}
                 </div>
             </main>
             <footer>
