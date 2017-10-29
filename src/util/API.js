@@ -1,18 +1,5 @@
 const handleCallResult = res => {
-  if ((res.status >= 200 && res.status <= 204) || res.status === 0) {
-    return Promise.resolve(res);
-  } else {
-    return new Promise((resolve, reject) => {
-      res
-        .json()
-        .then(result => {
-          reject(result);
-        })
-        .catch(() => {
-          reject(res);
-        });
-    });
-  }
+  return Promise[(res.status >= 200 && res.status <= 204) || res.status === 0 ? 'resolve' : 'reject'](res);
 };
 
 const api = {
