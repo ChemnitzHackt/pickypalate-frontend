@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from './Button';
 
-class AddButton extends Component {
+class PositionButton extends Component {
   constructor (props) {
     super(props);
     this.state = {};
@@ -10,10 +10,10 @@ class AddButton extends Component {
   render () {
     return (
       <Button onClick={this.props.onClick} className="add-marker icon-only primary">
-        <i className="material-icons">add_location</i>
+        <i className="material-icons">gps_fixed</i>
       </Button>
     );
   }
 }
 
-export default AddButton;
+export default PositionButton;
