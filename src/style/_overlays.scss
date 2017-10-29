@@ -35,6 +35,14 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .overlay-container.detail-view {
+    top: 2em !important;
+    transform: none !important;
+    bottom: auto !important;
+  }
+}
+
 .overlay-container.filter-view {
   height: auto;
   top: 50%;
