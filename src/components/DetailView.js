@@ -4,7 +4,6 @@ import Overlay from './Overlay';
 import Button from './Button';
 
 function setIcon(state, diet){
-    console.log(diet);
     if (state === "yes")
         return diet+"-icon";
     if (state === "no")
