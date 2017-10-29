@@ -1,0 +1,131 @@
+.overlay-container {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  max-width: 400px;
+  max-height: 500px;
+  border-radius: 10px;
+  background-color: #fff;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,.15);
+
+  button.close {
+    position: absolute;
+    right: -25px;
+    top: -25px;
+    line-height: 3.8em;
+    background-color: #F44336;
+  }
+
+  button.close:hover,
+  button.close:active {
+    background-color: #f86962;
+  }
+
+  header {
+    margin: -1em -1em 1em -1em;
+    padding: 1em;
+    background-color: #FFC107;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .overlay-container.detail-view {
+    top: 2em !important;
+    transform: none !important;
+    bottom: auto !important;
+  }
+}
+
+.overlay-container.filter-view {
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 80%;
+  overflow: scroll;
+  z-index: 1100;
+
+  .filter-item {
+    padding: 1em;
+    background-color: #4CAF50;
+    color: #fff;
+    border-bottom: 1px solid #47a24b;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+
+    &.selected:after {
+      content: 'check';
+      font-family: 'Material Icons';
+      font-feature-settings: 'liga';
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      margin-top: -8.5px;
+    }
+
+    &:hover, &:active {
+      background-color: #71be74;
+    }
+
+    &:first-child {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border: none;
+    }
+
+    small {
+      display: block;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .overlay-container.filter-view {
+    top: 5%;
+    transform: none;
+    bottom: auto;
+  }
+
+  .overlay-container button.close {
+    right: 50%;
+    margin-right: -25px;
+    bottom: -25px;
+    top: auto;
+  }
+}
+
+.overlay-container.detail-view {
+  padding: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+
+  h1 {
+    margin: 0.2em 0;
+  }
+  
+  main {
+    margin: 0.2em 0;
+  }
+  
+  main address {
+    font-style: inherit;
+  }
+}
+
+.telephone-number {
+  margin: 0;
+} 

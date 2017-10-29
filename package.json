@@ -10,12 +10,17 @@
   "scripts": {
     "build": "webpack --colors",
     "release": "webpack --colors --optimize-minimize",
+    "release-native": "BUILD_TARGET=native webpack --colors --optimize-minimize",
+    "build-ios": "npm run release-native; cd cordova; cordova build ios; cd ..",
+    "run-ios": "npm run release-native; cd cordova; cordova build ios; cordova run ios; cd ..",
     "watch": "webpack --colors --watch",
     "start": "webpack-dev-server",
     "lint": "eslint src/**/*.js",
     "fix": "eslint --fix src/**/*.js",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "postinstall": "cd cordova; npm install; ln -s ../dist www; cd ..",
+    "postupdate": "cd cordova; npm update"
   },
   "dependencies": {
     "normalize.css": "^7.0.0",

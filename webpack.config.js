@@ -11,11 +11,11 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: process.env.BUILD_TARGET === 'native' ? '' : '/',
     filename: '[name].[chunkhash].js'
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 8080
   },
@@ -23,7 +23,7 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
       title: 'Picky Palate',
-      template: 'index.ejs',
+      template: process.env.BUILD_TARGET === 'native' ? 'index.native.ejs' : 'index.ejs',
       filename: 'index.html'
     }),
     new CleanWebpackPlugin(['dist'], {

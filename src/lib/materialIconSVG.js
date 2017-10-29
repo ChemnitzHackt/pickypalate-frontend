@@ -30,9 +30,10 @@ const allowedSize = [
  * @param iconName {string} name of icon required
  * @param type {string=maps} Type of icon
  * @param size {string=small} Size of SVG icon required
+ * @param color {string} Hex code for the fill Color
  * @returns Inline SVG for the given icon or null
  */
-function getSVG(iconName, type, size) {
+function getSVG(iconName, type, size, color) {
   console.log('Getting svg...', iconName, type, size);
   if (!iconName) {
     return null;
@@ -58,8 +59,8 @@ function getSVG(iconName, type, size) {
     strokeOpacity: 1,
     strokeWeight: 1,
     scale: 10,
-    fillColor: '#FF0000',
-    fillOpacity: 0.6
+    fill: '#ff0000',
+    fillOpacity: 0.5
   }
   return iconObj;
 }

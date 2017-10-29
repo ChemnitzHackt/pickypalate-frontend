@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Picky Palate</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/beige.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><h1>Picky Palate</h1></section>
+				<section>
+				    <section><h2>Idea</h2></section>
+				    <section><h3>Glutenfree Bakery</h3>
+				        Aim: Enable people with celiac disease to find bakeries that offer glutenfree bakeries
+				    </section>
+				    <section>Extension: Other kinds of places<br><br>
+				        <ul>
+				            <li>restaurants</li>
+				            <li>shops</li>
+				            <li>bars</li>	
+				            <li>...</li>	
+				        </ul>	
+				    </section>		
+				    <section>Extension: Other dietary restrictions<br><br>
+				        <ul>
+				            <li>vegetarian</li>
+				            <li>halal</li>
+				            <li>vegan</li>	
+				            <li>...</li>	
+				        </ul>	
+				    </section>	            			            				            
+				</section>
+				<section>
+				    <section><h2>Implementation</2></section>
+				    <section><h3>Map</h3>
+				        Data: Openstreetmap<br>
+				        Visualisation: Google Maps
+				    </section>
+				    <section><h3>Frameworks / Tech Stack</h3>
+				        React, OverPass API, Cordova
+				    </section>
+				</section>
+				<section><h2><a href="http://localhost:8080/" target="_blank">Demo</a></h2></section>
+				<section>
+				    <section><h2>Open Questions</h2></section>
+				    <section><h3>Name</h3>
+				        <ul>
+				            <li>picky palate</li>
+				            <li>food finder</li>
+				            <li>openfoodmap</li>	
+				            <li>...</li>	
+				        </ul>	
+					</section>
+					<section><h3>Future plans/features</h3>
+				        <ul>
+				            <li>crowdsourcing / adding of locations</li>
+				            <li>editing of existing locations</li>
+				            <li>colorcoding / icons for map markers</li>	
+							<li>ratings, comments, pricing information</li>
+				            <li>yelp information</li>	
+				            <li>...</li>	
+				        </ul>	
+				    </section>
+				</section>
+				<section>
+					<section>
+						<h2>Go get it!</h2>
+						<img src="../cordova/platforms/android/res/mipmap-xxxhdpi/icon.png" style="display: block; margin: 1em auto 0; border: 1px solid #fff; border-radius: 35px;" />
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
