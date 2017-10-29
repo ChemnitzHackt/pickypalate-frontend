@@ -14,8 +14,8 @@ const api = {
     console.log('update node');
     console.log(place);
     const updateRequest = new Request(`http://localhost:3000/api/place/${place.id}`, {
-        method: 'PUT',
-        body: place
+        method: 'POST',
+        body: JSON.stringify(place)
       }
     )
 
