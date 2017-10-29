@@ -14,7 +14,7 @@
   .gmnoscreen, 
   .gmnoprint, 
   .gm-style-cc,
-  button {
-    display: none;
+  button, a {
+    display: none !important;
   }
 }

@@ -79,7 +79,7 @@ class App extends Component {
       north: this.state.location.latitude + 0.5,
       east: this.state.location.longitude + 0.5
     }).then((data) => {
-      this.setState({places: data.elements})
+      this.setState({places: data.elements || []})
     });
   }
 

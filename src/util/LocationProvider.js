@@ -18,8 +18,16 @@ class LocationProvider {
    * @memberof LocationProvider
    */
   constructor () {
-    this.update();
-    this._listen();
+    const init = () => {
+      this.update();
+      this._listen();      
+    }
+
+    if (window.cordova) {
+      document.addEventListener('deviceready', init, false);
+    } else {
+      init();
+    }
   }
 
   /**
@@ -60,12 +68,15 @@ class LocationProvider {
 
   /**
    * Listen for location changes.
-   * TODO: @adfr do real change listening here
    * 
    * @memberof LocationProvider
    */
   _listen () {
-    setInterval(this._update, 5000);
+    if (navigator && navigator.geolocation && navigator.geolocation.watchPosition) {
+      navigator.geolocation.watchPosition(this.update);
+    } else {
+      setInterval(this._update, 5000);
+    } 
   }
 }
 

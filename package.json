@@ -10,6 +10,7 @@
   "scripts": {
     "build": "webpack --colors",
     "release": "webpack --colors --optimize-minimize",
+    "release-native": "BUILD_TARGET=native webpack --colors --optimize-minimize",
     "watch": "webpack --colors --watch",
     "start": "webpack-dev-server",
     "lint": "eslint src/**/*.js",
