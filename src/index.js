@@ -52,11 +52,10 @@ class App extends Component {
   }
 
   renderMarkers (place) {
-    console.log('rendering place:', place)
     return (
       <Marker
         key={place.id}
-        position={{lat: place.lat, lng: place.lon}} 
+        position={{lat: place.lat, lng: place.lon}}
         tags={place.tags}
         onClick={() => this.setState({
           showDetailOverlay: true,
@@ -92,8 +91,8 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        <Map  onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
-          <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
+        <Map onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
+          <Marker position={{lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           {
             this.state.places.map((place) => this.renderMarkers(place))
           }
@@ -104,7 +103,7 @@ class App extends Component {
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
         {this.state.showDetailOverlay === true && <DetailView data={this.state.details} onClose={this.handleMapClick} /> }
-        <AddButton onClick= {this.handleAddClick} />
+        <AddButton onClick={this.handleAddClick} />
       </AppContainer>
     );
   }
