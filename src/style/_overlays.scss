@@ -14,12 +14,13 @@
     position: absolute;
     right: -25px;
     top: -25px;
-    background-color: #E91E63;
+    line-height: 3.8em;
+    background-color: #F44336;
   }
 
   button.close:hover,
   button.close:active {
-    background-color: #ec4f82;
+    background-color: #f86962;
   }
 }
 
@@ -32,11 +33,12 @@
 
   .filter-item {
     padding: 1em;
-    background-color: #8BC34A;
+    background-color: #4CAF50;
     color: #fff;
-    border-bottom: 1px solid #4CAF50;
+    border-bottom: 1px solid #47a24b;
     cursor: pointer;
     position: relative;
+    user-select: none;
 
     &.selected:after {
       content: 'check';
@@ -49,7 +51,7 @@
     }
 
     &:hover, &:active {
-      background-color: #a2ce70;
+      background-color: #71be74;
     }
 
     &:first-child {
@@ -76,6 +78,13 @@
     top: 5%;
     transform: none;
     bottom: auto;
+  }
+
+  .overlay-container button.close {
+    right: 50%;
+    margin-right: -25px;
+    bottom: -25px;
+    top: auto;
   }
 }
 
