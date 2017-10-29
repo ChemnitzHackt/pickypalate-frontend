@@ -85,9 +85,18 @@ class App extends Component {
   }
 
   renderMarkers (place) {
+    const dietTags = Object.keys(place.tags)
+      .filter((key) => key.startsWith('diet:'));
+    let opacity = 0.1
+
+
+    if (dietTags.length > 0) {
+      opacity = 1.0
+    }
     return (
       <Marker
         key={place.id}
+        options={{opacity: opacity}}
         position={{lat: place.lat, lng: place.lon}}
         tags={place.tags}
         onClick={() => this.setState({
