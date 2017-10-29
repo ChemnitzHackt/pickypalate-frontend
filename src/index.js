@@ -13,7 +13,7 @@ import Overlay from './components/Overlay';
 import DetailView from './components/DetailView';
 import Map from './components/Map';
 import { Marker } from 'react-google-maps';
-
+import MapMarker, {MARKER_TYPES} from './components/MapMarker';
 
 const Locator = new LocationProvider();
 
@@ -29,6 +29,7 @@ class App extends Component {
     };
 
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.onMarkerClick = this.onMarkerClick.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
   }
 
@@ -39,10 +40,22 @@ class App extends Component {
   renderMarkers (place) {
     console.log('rendering place:', place)
     return (
-      <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} onClick={() => this.setState({showDetailOverlay:true, details:place.tags.name})}/>
+      <MapMarker
+        key={place.id}
+        position={{ lat: place.lat, lng: place.lon}}
+        tags={place.tags}
+        onClick={this.onMarkerClick}
+        type={MARKER_TYPES.Bakery}
+      />
     )
   }
 
+  onMarkerClick(placeData) {
+    this.setState({
+      showDetailOverlay: true,
+      details: placeData.tags.name,
+    })
+  }
   updateLocation (location) {
     this.setState({ location });
     this.updatePlaces();
@@ -60,10 +73,12 @@ class App extends Component {
   }
 
   render () {
+    const {latitude, longitude} = this.state.location
     return (
       <AppContainer>
-        <Map longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
-          <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
+        <Map longitude={longitude} latitude={latitude} >
+          <MapMarker
+            position={{lat: latitude, lng: longitude}} type='Location'/>
           {
             this.state.places.map((place) => this.renderMarkers(place))
           }
@@ -71,10 +86,10 @@ class App extends Component {
         <FilterButton />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showDetailOverlay === true &&
-          <Overlay> 
-            <DetailView /> 
+          <Overlay>
+            <DetailView />
           </Overlay> }
-        <AddButton onClick= {this.handleAddClick} />
+        <AddButton onClick={this.handleAddClick} />
       </AppContainer>
     );
   }
