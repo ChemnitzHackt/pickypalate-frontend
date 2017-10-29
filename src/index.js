@@ -64,6 +64,7 @@ class App extends Component {
     };
 
     this.updateFilters = this.updateFilters.bind(this);
+    this.updateTags = this.updateTags.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
 
     Locator.onChange(this.updateLocation.bind(this));
@@ -76,7 +77,8 @@ class App extends Component {
   handleMapClick () {
     this.setState({
       showDetailOverlay: false,
-      showFilterOverlay: false
+      showFilterOverlay: false,
+      showTagsOverlay: false,
     });
   }
 
@@ -88,7 +90,7 @@ class App extends Component {
         tags={place.tags}
         onClick={() => this.setState({
           showDetailOverlay: true,
-          details: place.tags
+          details: place
         })}
       />
     )
@@ -100,6 +102,7 @@ class App extends Component {
   }
 
   updatePlaces () {
+    console.log('update places');
     api.getNodesForMap({
       filters: this.state.filters,
       south: this.state.location.latitude - 0.5,
@@ -117,6 +120,17 @@ class App extends Component {
     this.updatePlaces();
   }
 
+  updateTags (tags) {
+    var details = this.state.details;
+    details.tags = tags;
+
+
+    this.setState({ details });
+    api.updateNode(details);
+    console.log(details);
+    this.updatePlaces();
+  }
+
   render () {
     return (
       <AppContainer>
@@ -129,7 +143,11 @@ class App extends Component {
         <FilterButton onClick={() => this.setState({ showFilterOverlay: !this.state.showFilterOverlay })} />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showFilterOverlay === true && <FilterView filters={this.state.filters} onUpdate={this.updateFilters} /> }
-        {this.state.showDetailOverlay === true && <DetailView data={this.state.details} onClose={this.handleMapClick} /> }
+        {this.state.showTagsOverlay === true && <FilterView filters={this.state.details.tags} onUpdate={this.updateTags} /> }
+        {this.state.showDetailOverlay === true && <DetailView data={this.state.details.tags} onClose={this.handleMapClick}> 
+          <FilterButton onClick={() => this.setState({ showTagsOverlay: !this.state.showFilterOverlay })} / >
+        </DetailView>
+        }
         <AddButton onClick={this.handleAddClick} />
       </AppContainer>
     );
