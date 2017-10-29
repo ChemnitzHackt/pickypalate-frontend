@@ -9,8 +9,8 @@ class PositionButton extends Component {
 
   render () {
     return (
-      <Button onClick={this.props.onClick} className="add-marker icon-only primary">
-        <i className="material-icons">gps_fixed</i>
+      <Button onClick={this.props.onClick} className='add-marker icon-only primary'>
+        <i className='material-icons'>gps_fixed</i>
       </Button>
     );
   }

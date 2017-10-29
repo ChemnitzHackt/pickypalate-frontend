@@ -14,7 +14,7 @@ import Overlay from './components/Overlay';
 import DetailView from './components/DetailView';
 import FilterView from './components/FilterView';
 import Map from './components/Map';
-import { Marker } from 'react-google-maps';
+import MapMarker, {MARKER_TYPES} from './components/MapMarker';
 
 const Locator = new LocationProvider();
 const isDay = () => {
@@ -72,7 +72,7 @@ class App extends Component {
     this.handleMapClick = this.handleMapClick.bind(this);
     this.updateLocationManual = this.updateLocationManual.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
-    
+
     Locator.onChange(this.updateLocation.bind(this));
   }
 
@@ -98,16 +98,17 @@ class App extends Component {
       opacity = 1.0
     }
     return (
-      <Marker
+      <MapMarker
         key={place.id}
         options={{opacity: opacity}}
-        position={{lat: place.lat, lng: place.lon}}
+        position={{ lat: place.lat, lng: place.lon}}
         tags={place.tags}
         onClick={() => this.setState({
           showDetailOverlay: true,
           showFilterOverlay: false,
           details: place
         })}
+        type={MARKER_TYPES.Bakery}
       />
     )
   }
@@ -166,15 +167,16 @@ class App extends Component {
   }
 
   render () {
-    //console.log('tags');
-    //console.log(this.state.details.tags);
-    //console.log('tags');
-    //console.log(this.state);
+    const {latitude, longitude} = this.state.location
     return (
       <AppContainer>
         <Map showSearch={this.state.showSearch} onLatLngChange={this.updateLocationManual} onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} isDay={this.state.isDay} >
-          <Marker position={{lat: this.state.location.latitude, lng: this.state.location.longitude}} />
-          { this.state.places.map((place) => this.renderMarkers(place)) }
+          <MapMarker
+            position={{lat: latitude, lng: longitude}} type='Location'/>
+            {
+              this.state.places.map((place) => this.renderMarkers(place))
+            }
+            type={MARKER_TYPES.Location}
         </Map>
 
         <SearchButton onClick={this.toggleSearch}/>
