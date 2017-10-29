@@ -1,3 +1,7 @@
+const handleCallResult = res => {
+  return Promise[(res.status >= 200 && res.status <= 204) || res.status === 0 ? 'resolve' : 'reject'](res);
+};
+
 const api = {
 
   /**
@@ -29,6 +33,7 @@ const api = {
     })
 
     return fetch(getRequest)
+      .then(handleCallResult)
       .then((response) => {
         return response.text()
       })
@@ -92,6 +97,7 @@ const api = {
     console.log('calling the backend');
 
     return fetch(queryRequest)
+      .then(handleCallResult)
       .then((result) => {
         return result.json()
       })
