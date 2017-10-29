@@ -3,11 +3,19 @@ import React from "react";
 import Overlay from './Overlay';
 import Button from './Button';
 
-const DetailView = function(props) {
-    var glutenfree = (props.data["diet:gluten_free"] === "yes") ? "glutenfree-icon" : "";
-    var vegan = (props.data["diet:vegan"] === "yes") ? "vegan-icon" : "";
-    var vegetarian = (props.data["diet:vegetarian"] === "yes") ? "vegetarian-icon" : "";
+function setIcon(state, diet){
+    console.log(diet);
+    if (state === "yes")
+        return diet+"-icon";
+    if (state === "no")
+        return diet+"-icon no-diet";
+    return ""
+}
 
+const DetailView = function(props) {
+    var glutenfree = setIcon(props.data["diet:gluten_free"], "glutenfree");
+    var vegan = setIcon(props.data["diet:vegan"], "vegan");
+    var vegetarian = setIcon(props.data["diet:vegetarian"], "vegetarian");
 
     return (
         <Overlay className="detail-view">
@@ -17,6 +25,7 @@ const DetailView = function(props) {
             
             <header>
                 <h1>{props.data.name || ""}</h1>
+                <div className="amenity">{props.data.amenity.replace("\_", " ") || ""}</div>
                 <div className="icons">
                     <div className={glutenfree}></div>
                     <div className={vegan}></div>
@@ -43,12 +52,8 @@ const DetailView = function(props) {
                         <dd>{props.data["phone"] || "No information"}</dd>
                     </dl>
                 </div>
-                <div className="description">
-                    Das im Shabby Chic gestaltete Café bietet zu Kaffee und Frappés feine amerikanische Süßwaren und Eis am Stil.
-                </div>
                 <div className="furtherInformation">
-
-                    { props.data.website && <a href={props.data.website}>Website</a> }
+                    {props.data.website && <a href={props.data.website} target="_blank">Website</a>}
                 </div>
             </main>
             <footer>
