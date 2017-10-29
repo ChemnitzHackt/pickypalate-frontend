@@ -25,7 +25,7 @@ const DetailView = function(props) {
             
             <header>
                 <h1>{props.data.name || ""}</h1>
-                <div className="amenity">{props.data.amenity.replace("\_", " ") || ""}</div>
+                <div className="amenity">{(props.data.amenity && props.data.amenity.replace("\_", " ")) || ""}</div>
                 <div className="icons">
                     <div className={glutenfree}></div>
                     <div className={vegan}></div>
