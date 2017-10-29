@@ -20,6 +20,7 @@ class LocationProvider {
   constructor () {
     this.update();
     this._listen();
+    this.manualMode = false;
   }
 
   /**
@@ -30,6 +31,30 @@ class LocationProvider {
    */
   get () {
     return LOCATION;
+  }
+
+  /**
+   * 
+   * 
+   * @param {Function} callback - the callback to call upon changes
+   * @param {Function} callback - the callback to call upon changes
+   * @memberof LocationProvider
+   */
+  switchToManualMode (lat, lng) {
+    
+    this.manualMode = true;
+
+    LOCATION.latitude = lat;
+    LOCATION.longitude = lng;
+    
+    if (UPDATE_CALLBACK) {
+        UPDATE_CALLBACK(LOCATION);
+    }
+  }
+
+  switchToAutomaticMode() {
+    this.manualMode = false;
+    this.update();
   }
 
   /**
@@ -48,6 +73,10 @@ class LocationProvider {
    * @memberof LocationProvider
    */
   update () {
+
+    if (this.manualMode)
+      return;
+
     console.log('[LocationProvider] Updating ...');
     navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition(({ coords }) => {
       LOCATION.longitude = coords.longitude;

@@ -7,7 +7,7 @@ import api from './util/API';
 
 import LocationProvider from './util/LocationProvider';
 import AppContainer from './components/AppContainer';
-import AddButton from './components/AddButton';
+import PositionButton from './components/PositionButton';
 import FilterButton from './components/FilterButton';
 import SearchButton from './components/SearchButton';
 import Overlay from './components/Overlay';
@@ -26,16 +26,19 @@ class App extends Component {
       location: Locator.get(),
       showAddOverlay: false,
       showDetailOverlay: false,
-      places: []
+      places: [],
+      showSearch: false,
     };
 
-    this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleMyPositionClick = this.handleMyPositionClick.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
+    this.updateLocationManual = this.updateLocationManual.bind(this);
     Locator.onChange(this.updateLocation.bind(this));
   }
 
-  handleAddClick () {
-    alert('show details');
+  handleMyPositionClick () {
+    Locator.switchToAutomaticMode();
   }
 
   handleMapClick () {
@@ -49,6 +52,10 @@ class App extends Component {
     return (
       <Marker key={place.id} position={{ lat: place.lat, lng: place.lon}} tags={place.tags} onClick={() => this.setState({showDetailOverlay:true, details:place.tags.name})}/>
     )
+  }
+
+  toggleSearch () {
+    this.setState({showSearch: !this.state.showSearch});
   }
 
   updateLocation (location) {
@@ -67,23 +74,27 @@ class App extends Component {
     });
   }
 
+  updateLocationManual(lat, lng) {
+    Locator.switchToManualMode(lat, lng);
+  }
+
   render () {
     return (
       <AppContainer>
-        <Map  onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
+        <Map showSearch={this.state.showSearch} onLatLngChange={this.updateLocationManual} onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
           <Marker position={{ lat: this.state.location.latitude, lng: this.state.location.longitude}} />
           {
             this.state.places.map((place) => this.renderMarkers(place))
           }
         </Map>
-        <SearchButton />
+        <SearchButton onClick={this.toggleSearch}/>
         <FilterButton />
         {this.state.showAddOverlay === true && <AddView /> }
         {this.state.showDetailOverlay === true &&
           <Overlay > 
             <DetailView onClose={this.handleMapClick}/> 
           </Overlay> }
-        <AddButton onClick= {this.handleAddClick} />
+        <PositionButton onClick= {this.handleMyPositionClick} />
       </AppContainer>
     );
   }
