@@ -8,11 +8,6 @@ console.log(Styles)
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyDlahMtbvEn2WGTdbBZ0mp7Kew5Q8m4AEU';
 
-const isDay = () => {
-  const hours = new Date().getHours()
-  return hours > 6 && hours < 20
-};
-
 const Map = compose(
   withProps({
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=' + 
@@ -32,7 +27,7 @@ const Map = compose(
       onClick={props.onClick}
       defaultZoom={13}
       center={{ lat, lng }}
-      defaultOptions={{ styles: Styles[ isDay() ? 'Day' : 'Night' ] }}
+      defaultOptions={{ styles: Styles[ props.isDay ? 'Day' : 'Night' ] }}
     >
       {props.children}
     </GoogleMap>

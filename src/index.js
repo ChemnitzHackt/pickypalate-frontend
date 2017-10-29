@@ -17,12 +17,40 @@ import Map from './components/Map';
 import { Marker } from 'react-google-maps';
 
 const Locator = new LocationProvider();
+const isDay = () => {
+  const hours = new Date().getHours()
+  return hours > 6 && hours < 20
+};
+
+// native stuff
+if (window.cordova) {
+  document.documentElement.classList.add('native');
+  document.documentElement.classList.add(window.cordova.platformId);
+
+  const onDeviceReady = () => {
+    // StatusBar adjustments
+    if (window.StatusBar) {
+      if (window.cordova.platformId === 'android') {
+        // set statusbar bg color and apply white font color
+        window.StatusBar.backgroundColorByHexString('#673ab7');
+        window.StatusBar.styleLightContent();
+      } else {
+        // set statusbar transparent bg and apply white font color according to day/night theme
+        window.StatusBar.overlaysWebView(true);
+        window.StatusBar[isDay() ? 'styleDefault' : 'styleLightContent']();
+      }
+    }
+  };
+
+  document.addEventListener('deviceready', onDeviceReady, false);
+}
+
 
 class App extends Component {
   constructor (props) {
     super(props);
 
-    let filters = localStorage.getItem('filters');
+    let filters = window.localStorage.getItem('filters');
     filters = filters && JSON.parse(filters) || ['diet:gluten_free', 'diet:vegan'];
 
     this.state = {
@@ -31,13 +59,14 @@ class App extends Component {
       showDetailOverlay: false,
       places: [],
       filters: filters,
-      details: {}
+      details: {},
+      isDay: isDay()
     };
 
     this.updateFilters = this.updateFilters.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
+
     Locator.onChange(this.updateLocation.bind(this));
-    //this.updatePlaces();
   }
 
   handleAddClick () {
@@ -84,18 +113,16 @@ class App extends Component {
 
   updateFilters (filters) {
     this.setState({ filters });
-    localStorage.setItem('filters', JSON.stringify(filters))
+    window.localStorage.setItem('filters', JSON.stringify(filters))
     this.updatePlaces();
   }
 
   render () {
     return (
       <AppContainer>
-        <Map onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} >
+        <Map onClick={this.handleMapClick} longitude={this.state.location.longitude} latitude={this.state.location.latitude} isDay={this.state.isDay} >
           <Marker position={{lat: this.state.location.latitude, lng: this.state.location.longitude}} />
-          {
-            this.state.places.map((place) => this.renderMarkers(place))
-          }
+          { this.state.places.map((place) => this.renderMarkers(place)) }
         </Map>
 
         <SearchButton />
