@@ -100,7 +100,7 @@ class App extends Component {
   }
 
   toggleSearch () {
-    this.setState({showSearch: !this.state.showSearch, showDetailOverlay: false; showFilterOverlay: false});
+    this.setState({showSearch: !this.state.showSearch, showDetailOverlay: false, showFilterOverlay: false});
   }
 
   updateLocation (location) {
