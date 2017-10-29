@@ -86,11 +86,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		o96KGOh8NXMDjL1GyJ5z36vWSKs=
+		q9VYKPDgR57NXn5GNQMjmP947sw=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		u4kbsUwZrc4Dct9FITCFedlJ2kA=
+		g1O6FoEsXPgv+gXWvbY8wx1/FqQ=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -98,7 +98,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		pVsOChuAQAA9Pou4/z+ySTFhL2w=
+		V4eq/sCgXVGI66A/viqKDOEsVxs=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -162,7 +162,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		FBAYUhPfn2ulVI7e9fyArfPv5EM=
+		dDn8PeFPLvHabe6V/ipV7b4U08c=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -184,9 +184,17 @@
 		<data>
 		xslTwsyyypq7IduNv0c7WkNfAII=
 		</data>
+		<key>www/2f1a4a568b6da92b7d64bbdea7b2aadb.svg</key>
+		<data>
+		N6kCFCv0RcAjf0U+ZqYlAR8/Twk=
+		</data>
 		<key>www/570eb83859dc23dd0eec423a49e147fe.woff2</key>
 		<data>
 		CZY1kujJU8x+FOP7ClsF1QQuhDU=
+		</data>
+		<key>www/9fda9388c3f2f567feec16ae0470f694.svg</key>
+		<data>
+		DziLyCAJrfD/z1BpN9NCqZO9UMw=
 		</data>
 		<key>www/a37b0c01c0baf1888ca812cc0508f6e2.ttf</key>
 		<data>
@@ -216,17 +224,21 @@
 		<data>
 		QyJzLYBCMWJXh/Y6E4HWLzkSKq4=
 		</data>
+		<key>www/d48f7ef5a5d144ac77ecf3eb07c7b68b.svg</key>
+		<data>
+		can5JMS2kdyAT7eCtQPUgYhcuiA=
+		</data>
 		<key>www/e79bfd88537def476913f3ed52f4f4b3.eot</key>
 		<data>
 		JvuM7LVRIiMne00pCiRJKg8J7eE=
 		</data>
 		<key>www/index.html</key>
 		<data>
-		5XjmQDr6nDvG/AgmfojMvxS8iqI=
+		cglcEO7FxUf4yYMEW3/obNnBHIc=
 		</data>
-		<key>www/main.501bd59df1070317b3ef.js</key>
+		<key>www/main.f0937d817ad7eafdd77a.js</key>
 		<data>
-		4SMUiF71smnXoR4RkJ+ICBp88bs=
+		2Or2wzejmRYhjOFJxOUvb1u2W5k=
 		</data>
 		<key>www/plugins/cordova-plugin-geolocation/www/Coordinates.js</key>
 		<data>
@@ -475,22 +487,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			o96KGOh8NXMDjL1GyJ5z36vWSKs=
+			q9VYKPDgR57NXn5GNQMjmP947sw=
 			</data>
 			<key>hash2</key>
 			<data>
-			5Fcd24Prm0YlRKQHILl9T3A5x776zXZvCXM27FP2eMs=
+			kc8XhKcknuH6ecD80v2j1mDKmVkTuN2+uKItGV7m+Dg=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			u4kbsUwZrc4Dct9FITCFedlJ2kA=
+			g1O6FoEsXPgv+gXWvbY8wx1/FqQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			UmqdTn7/yXN3FsZgsodmOOHLTJJyp/liDrdd+gXBmJI=
+			qs1y1C0MCbZWa0iEAnpikfCjczgImhDyL5jhG31+8tQ=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -508,11 +520,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			pVsOChuAQAA9Pou4/z+ySTFhL2w=
+			V4eq/sCgXVGI66A/viqKDOEsVxs=
 			</data>
 			<key>hash2</key>
 			<data>
-			0P8KVb1IfadMAmnbiNRpRDCtB2nqVuxioeAIEzLwJzA=
+			7Wna/3epvlaQKN6gvFhoRfHYUWrr0dEPfZ2dwLCWWtA=
 			</data>
 		</dict>
 		<key>LaunchImage-568h@2x.png</key>
@@ -673,11 +685,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			FBAYUhPfn2ulVI7e9fyArfPv5EM=
+			dDn8PeFPLvHabe6V/ipV7b4U08c=
 			</data>
 			<key>hash2</key>
 			<data>
-			y8YobNh+q7nuNddH8PNvKUJrqj/Adr1P/uf4JDhsxck=
+			L1FtArOWhIoIqmnv1/JDXSlJMMBKy2fbEva59VXgPFk=
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
@@ -724,6 +736,17 @@
 			xKG67DANCeA6g4C4WRgmfugPqujgDGxWtI4udLHZs40=
 			</data>
 		</dict>
+		<key>www/2f1a4a568b6da92b7d64bbdea7b2aadb.svg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			N6kCFCv0RcAjf0U+ZqYlAR8/Twk=
+			</data>
+			<key>hash2</key>
+			<data>
+			RxSq8J9Mx5TnBaH0ebyCfQgQUrVktD2XLy6kdeqhRlw=
+			</data>
+		</dict>
 		<key>www/570eb83859dc23dd0eec423a49e147fe.woff2</key>
 		<dict>
 			<key>hash</key>
@@ -733,6 +756,17 @@
 			<key>hash2</key>
 			<data>
 			qH1myRsufcVTCu92wDvWo9JepYJhEL9IA7VhuBHMhyY=
+			</data>
+		</dict>
+		<key>www/9fda9388c3f2f567feec16ae0470f694.svg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			DziLyCAJrfD/z1BpN9NCqZO9UMw=
+			</data>
+			<key>hash2</key>
+			<data>
+			Z4Xd2mCisEyOlu+e0N1M7/slvV3x9OUcLjFBv5ypYBc=
 			</data>
 		</dict>
 		<key>www/a37b0c01c0baf1888ca812cc0508f6e2.ttf</key>
@@ -812,6 +846,17 @@
 			HhE1sxNRmoq6ZpyB0jaUL4geapj+jHEtvCQfF3vTW9U=
 			</data>
 		</dict>
+		<key>www/d48f7ef5a5d144ac77ecf3eb07c7b68b.svg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			can5JMS2kdyAT7eCtQPUgYhcuiA=
+			</data>
+			<key>hash2</key>
+			<data>
+			VbMjn/ixyNCPQKUVv9KVuv8idcXpfzKgrb+RauGd5Hk=
+			</data>
+		</dict>
 		<key>www/e79bfd88537def476913f3ed52f4f4b3.eot</key>
 		<dict>
 			<key>hash</key>
@@ -827,22 +872,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5XjmQDr6nDvG/AgmfojMvxS8iqI=
+			cglcEO7FxUf4yYMEW3/obNnBHIc=
 			</data>
 			<key>hash2</key>
 			<data>
-			bqTAyPG9OLdrCsSUCEWuGd5UjX0yJavHicGT9ISFZb0=
+			OPRe4iVTEqKGVllrSc75DJuyv+O1uMjvQZb6EQSv670=
 			</data>
 		</dict>
-		<key>www/main.501bd59df1070317b3ef.js</key>
+		<key>www/main.f0937d817ad7eafdd77a.js</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			4SMUiF71smnXoR4RkJ+ICBp88bs=
+			2Or2wzejmRYhjOFJxOUvb1u2W5k=
 			</data>
 			<key>hash2</key>
 			<data>
-			ORJpe0wJg7s97kc8RqSWa5eyQEroFKlhAO59D30/Oic=
+			6lz77SUQ4RjGqsr7vMhEn5W2QF2Sz4J81rhbbL+5Pxs=
 			</data>
 		</dict>
 		<key>www/plugins/cordova-plugin-geolocation/www/Coordinates.js</key>

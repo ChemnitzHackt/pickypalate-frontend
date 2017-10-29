@@ -92,6 +92,7 @@ class App extends Component {
         tags={place.tags}
         onClick={() => this.setState({
           showDetailOverlay: true,
+          showFilterOverlay: false,
           details: place.tags
         })}
       />

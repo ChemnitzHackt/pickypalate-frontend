@@ -4,7 +4,6 @@ import Overlay from './Overlay';
 import Button from './Button';
 
 function setIcon(state, diet){
-    console.log(diet);
     if (state === "yes")
         return diet+"-icon";
     if (state === "no")
@@ -25,7 +24,7 @@ const DetailView = function(props) {
             
             <header>
                 <h1>{props.data.name || ""}</h1>
-                <div className="amenity">{props.data.amenity.replace("\_", " ") || ""}</div>
+                <div className="amenity">{(props.data.amenity && props.data.amenity.replace("\_", " ")) || ""}</div>
                 <div className="icons">
                     <div className={glutenfree}></div>
                     <div className={vegan}></div>
@@ -36,8 +35,8 @@ const DetailView = function(props) {
                 <address>
                     <dl>
                         <dt><strong>Address:</strong></dt>
-                        <dd>{props.data["addr:street"]+" " +props.data["addr:housenumber"] || ""}</dd>
-                        <dd>{props.data["addr:postcode"]+" "+props.data["addr:city"] || ""}</dd>
+                        <dd>{(props.data["addr:street"] || '') + " " + (props.data["addr:housenumber"] || "")}</dd>
+                        <dd>{(props.data["addr:postcode"]||'') + " " + (props.data["addr:city"] || "")}</dd>
                     </dl>
                 </address>
                 <time className="opening-times">
